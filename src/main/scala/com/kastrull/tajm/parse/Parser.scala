@@ -30,17 +30,26 @@ case class CommentParser() extends Parser {
     Left(Comment(src.trim()))
 }
 case class TimeParser() extends Parser {
-  def apply(src: String): Parser.Result = {
 
+  def parseInt(s: String) = {
+    val trimmed = s.trim()
+    if (trimmed.isEmpty()) 0 
+    else Integer.parseInt(trimmed)
+  }
+
+  def apply(src: String): Parser.Result = {
+    val paddedSrc = (' ' + src + ' ')
+	    
     val hasHourMinuteSeparator = src.contains(':')
     if (hasHourMinuteSeparator) {
-      val (hour, minutes) = src.partition(_ == ':')
-      Left(Time(
-          Integer.parseInt(minutes.tail) + 
-          Integer.parseInt(hour) * 60))
-      
+      val parts = paddedSrc.split(':')
+      val hours = parts(0);
+      val minutes = parts(1);
+      val totalMinutes = parseInt(minutes) + parseInt(hours) * 60
+      Left(Time(totalMinutes))
+
     } else {
-      val minutes = Integer.parseInt(src) * 60
+      val minutes = parseInt(paddedSrc)
       Left(Time(minutes))
     }
   }
