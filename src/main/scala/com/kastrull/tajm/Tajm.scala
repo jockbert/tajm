@@ -1,5 +1,5 @@
-package com.kastrull.tajm;
+package com.kastrull.tajm
 
 object Tajm extends App {
-	System.out.println("Hello Tajm!");
+  println("Hello Tajm!")
 }
