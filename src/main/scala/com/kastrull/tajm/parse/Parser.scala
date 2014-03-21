@@ -6,8 +6,7 @@ import com.kastrull.tajm.ast.Time
 
 object Parser {
 
-  type ParseErrors = Seq[ParseError]
-  type Result = Either[Command, ParseErrors]
+  type Result = Either[Command, ParseError]
 
   val comment = CommentParser().apply _
 
@@ -15,7 +14,7 @@ object Parser {
     def hasCommand: Boolean = result.isLeft
     def hasParseErrors: Boolean = result.isRight
     def command: Command = result.left.get
-    def errors: ParseErrors = result.right.get
+    def error: ParseError = result.right.get
   }
 }
 
@@ -57,6 +56,14 @@ case class TimeParser() extends Parser {
 
   def apply(src: String): Parser.Result = {
     val paddedSrc = (' ' + src.toLowerCase() + ' ')
+    try
+    	doParse(paddedSrc)
+    catch {
+      case e:Throwable => Right(TimeFormatError(src,0))
+    }
+  }
+  
+  private def doParse(paddedSrc: String): scala.util.Left[com.kastrull.tajm.ast.Time,Nothing] = {
 
     val hasHourMinuteSeparator = paddedSrc.contains(':')
     val hasMinuteSuffix = paddedSrc.contains('m')

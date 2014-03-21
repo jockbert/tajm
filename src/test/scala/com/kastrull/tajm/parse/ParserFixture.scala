@@ -20,10 +20,10 @@ trait ParserFixture extends FreeSpec with Matchers {
       assert(command == expected)
     }
 
-    def becomes(expected: ParseError*): Unit = {
+    def becomes(expected: ParseError): Unit = {
       val actualResult = parser(source)
-      val errors = actualResult.errors
-      assert(errors == expected.toSeq)
+      val error = actualResult.error
+      assert(error == expected)
     }
   }
 

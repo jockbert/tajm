@@ -12,7 +12,7 @@ class TimePrserTest extends ParserFixture {
 
     "simple hours" in {
       "" becomes Time(0)
-        " " becomes Time(0)
+      " " becomes Time(0)
       "-1" becomes Time(-60)
       "0" becomes Time(0)
       " 1 " becomes Time(60)
@@ -43,21 +43,13 @@ class TimePrserTest extends ParserFixture {
       ":1" becomes Time(1)
     }
 
-    "float hours with point separator" ignore {}
-    "float hours with comma separator" ignore {}
-    "float hours rounded" ignore {}
-
-    "just bad values" ignore {}
-
-    "rational hours" ignore {}
-    "invalid rational hours" ignore {}
-    "rounded rational hours" ignore {}
-
+    "just bad values" in {
+      "a1" becomes TimeFormatError("a1",0)
+      "1.2.3" becomes TimeFormatError("1.2.3",0)
+    }
 
     "timerange" ignore {}
     "bad time ranges" ignore {}
 
-
   }
-
 }
