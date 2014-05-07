@@ -4,7 +4,7 @@ import org.scalatest._
 import com.kastrull.tajm.ast.Comment
 import com.kastrull.tajm.ast.Time
 
-class TimePrserTest extends ParserFixture {
+class TimeParserTest extends ParserFixture[Time] {
 
   val parser = TimeParser()
 
@@ -47,9 +47,5 @@ class TimePrserTest extends ParserFixture {
       "a1" becomes TimeFormatError("a1",0)
       "1.2.3" becomes TimeFormatError("1.2.3",0)
     }
-
-    "timerange" ignore {}
-    "bad time ranges" ignore {}
-
   }
 }

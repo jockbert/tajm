@@ -9,7 +9,7 @@ object ParserFixture {
   
 }
 
-trait ParserFixture extends FreeSpec with Matchers {
+trait ParserFixture[T <: Command] extends FreeSpec with Matchers {
   import ParserFixture._
   
   implicit class ResultAsserter(source: String) {
@@ -27,5 +27,5 @@ trait ParserFixture extends FreeSpec with Matchers {
     }
   }
 
-  def parser: Parser
+  def parser: Parser[T]
 }

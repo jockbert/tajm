@@ -5,4 +5,6 @@ trait ParseError {
   def position: Int
 }
 
-case class TimeFormatError(source: String, position: Int) extends ParseError
+case class TimeFormatError(
+    source: String, 
+    position: Int) extends ParseError
