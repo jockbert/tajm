@@ -12,8 +12,8 @@ class TimeRangeParserTest extends ParserFixture[TimeRange] {
       case "10" => Left(Time(600))
       case "10 m" => Left(Time(10))
       case "10:04" => Left(Time(604))
-      case e => throw new Exception("Unknown value '%s'".format(e))
-      //case e => Right(TimeFormatError("Unknown value '%s'".format(e), 0))
+      //case e => throw new Exception("Unknown value '%s'".format(e))
+      case e => Right(TimeFormatError("Unknown value '%s'".format(e), 0))
     }
   }
 
@@ -35,10 +35,11 @@ class TimeRangeParserTest extends ParserFixture[TimeRange] {
       " 10 m" becomes Time(10)
     }
 
-    "bad time ranges returns error" ignore {
-      // "a" becomes
-      // "0..a" becomes
-      // "0..0..0" becomes
+    "bad time ranges returns error" in {
+      "a" becomes MissingTimeRangeError("a", 0)
+      "0..a" becomes TimeFormatError("0..a", 3)
+      " 0 .. a " becomes TimeFormatError(" 0 .. a ", 6)
+      "0..0..0" becomes TimeFormatError("0..0..0", 4)
     }
   }
 
