@@ -21,7 +21,8 @@ case class TimeRangeParser(timeParser: Parser[Time]) extends Parser[TimeRange] {
 
       } else if (secondResult.isRight) {
         val second = secondResult.right.get
-        Right(second.create(src, halfs._1.size + 2 + second.position))
+        Right(second.create(src, 
+            halfs._1.size + 1 + second.position))
 
       } else {
         val first = firstResult.left.get

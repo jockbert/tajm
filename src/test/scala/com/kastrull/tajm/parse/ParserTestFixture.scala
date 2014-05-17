@@ -1,16 +1,19 @@
 package com.kastrull.tajm.parse
 
-import org.scalatest.Matchers
-import com.kastrull.tajm.ast.Command
-import com.kastrull.tajm.parse.Parser._
 import org.scalatest.FreeSpec
+import org.scalatest.Matchers
 
-object ParserFixture {
+import com.kastrull.tajm.ast.Command
+import com.kastrull.tajm.parse.Parser.RichResult
+
+object ParserTestFixture {
   
 }
 
-trait ParserFixture[T <: Command] extends FreeSpec with Matchers {
-  import ParserFixture._
+trait ParserTestFixture[T <: Command] 
+extends FreeSpec with Matchers {
+
+  import ParserTestFixture._
   
   implicit class ResultAsserter(source: String) {
 

@@ -3,7 +3,7 @@ package com.kastrull.tajm.parse
 import org.scalatest._
 import com.kastrull.tajm.ast.Comment
 
-class CommentParserTest extends ParserFixture[Comment] {
+class CommentParserTest extends ParserTestFixture[Comment] {
 
   val parser = CommentParser()
 
