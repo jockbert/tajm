@@ -1,8 +1,7 @@
-package com.kastrull.tajm.activity
+package com.kastrull.tajm.ast
 
 import org.scalatest.FreeSpec
 import org.scalatest.Matchers
-import com.kastrull.tajm.ast.Activity
 
 class ActivityTest extends FreeSpec with Matchers {
 
@@ -28,7 +27,15 @@ class ActivityTest extends FreeSpec with Matchers {
       val children = c1 :: c2 :: Nil
       assert(children ===  parent.children)
       
+    }
+    
+    "can have parent" in {
+      val c = Activity("c")
+      assert(c.parent === None)
       
+      val p = Activity("p")
+      p.child(c)
+      assert(c.parent === Some(p))
     }
   }
 }
