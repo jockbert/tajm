@@ -8,8 +8,7 @@ class TimeParserTest extends ParserTestFixture[Time] {
 
   val parser = TimeParser()
 
-  "TimeParser" - {
-
+  
     "simple hours" in {
       "" becomes Time(0)
       " " becomes Time(0)
@@ -47,5 +46,5 @@ class TimeParserTest extends ParserTestFixture[Time] {
       "a1" becomes TimeFormatError("a1",0)
       "1.2.3" becomes TimeFormatError("1.2.3",0)
     }
-  }
+  
 }

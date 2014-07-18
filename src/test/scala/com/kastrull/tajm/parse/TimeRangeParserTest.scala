@@ -36,5 +36,4 @@ class TimeRangeParserTest extends ParserTestFixture[TimeRange] {
       "0..0..0" becomes TestError("0..0..0", 13)
     }
   }
-
 }

@@ -1,17 +1,14 @@
 package com.kastrull.tajm.parse
 
-import com.kastrull.tajm.ast.Command
 import com.kastrull.tajm.ast.Comment
-import com.kastrull.tajm.ast.Time
-import com.kastrull.tajm.ast.TimeRange
 
 object Parser {
 
-  type Result[T <: Command] = Either[T, ParseError]
+  type Result[T] = Either[T, ParseError]
 
   val comment = CommentParser().apply _
 
-  implicit class RichResult[T <: Command](result: Result[T]) {
+  implicit class RichResult[T](result: Result[T]) {
     def hasCommand: Boolean = result.isLeft
     def hasParseErrors: Boolean = result.isRight
     def command: T = result.left.get
@@ -19,9 +16,8 @@ object Parser {
   }
 }
 
-trait Parser[T <: Command]{
+trait Parser[T ]{
   import Parser._
-
   def apply(src: String): Result[T]
 }
 

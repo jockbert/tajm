@@ -3,21 +3,20 @@ package com.kastrull.tajm.parse
 import org.scalatest.FreeSpec
 import org.scalatest.Matchers
 
-import com.kastrull.tajm.ast.Command
 import com.kastrull.tajm.parse.Parser.RichResult
 
 object ParserTestFixture {
   
 }
 
-trait ParserTestFixture[T <: Command] 
+trait ParserTestFixture[T] 
 extends FreeSpec with Matchers {
 
   import ParserTestFixture._
   
   implicit class ResultAsserter(source: String) {
 
-    def becomes(expected: Command): Unit = {
+    def becomes(expected: T): Unit = {
       val actualResult = parser(source)
       val command = actualResult.command
       assert(command == expected)

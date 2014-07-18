@@ -6,36 +6,43 @@ import org.scalatest.Matchers
 class ActivityTest extends FreeSpec with Matchers {
 
   "Activity" - {
-    "has a name" in {
-      val name = "some name"
-      val activity = Activity(name)
-      assert(activity.name === name) 
+
+    val c = Activity("c")
+    val C = Activity("C")
+    val cd = Activity("c", "d")
+    val b = Activity("b")
+    val root = Activity()
+
+    "has a path / name" - {
+      assert(c.name === Seq("c"))
+      assert(cd.name === Seq("c", "d"))
+      assert(root.name === Seq())
     }
-    
-    "has a path" ignore {
-      val name = "name"
-        val path = "/name" 
-        val activity = Activity(name)
-       // assert(activity.path === path)
+
+    "can have children" in {
+
+      assert(cd.isChildOf(c))
+      assert(c.isChildOf(root))
+      assert(cd.isChildOf(root))
+
+      assert(!c.isChildOf(cd))
+      assert(!c.isChildOf(c))
+      assert(!C.isChildOf(cd))
+      assert(!root.isChildOf(c))
+      assert(!b.isChildOf(cd))
     }
-    
-    "has children" in {
-      val c1 = Activity("c1")
-      val c2 = Activity("c2")
-      val parent = Activity("parent").child(c1).child(c2)
-      
-      val children = c1 :: c2 :: Nil
-      assert(children ===  parent.children)
-      
-    }
-    
+
     "can have parent" in {
-      val c = Activity("c")
-      assert(c.parent === None)
-      
-      val p = Activity("p")
-      p.child(c)
-      assert(c.parent === Some(p))
+
+      assert(c.isParentOf(cd))
+      assert(root.isParentOf(c))
+      assert(root.isParentOf(cd))
+
+      assert(!cd.isParentOf(c))
+      assert(!c.isParentOf(c))
+      assert(!C.isParentOf(cd))
+      assert(!c.isParentOf(root))
+      assert(!b.isParentOf(cd))
     }
   }
 }
