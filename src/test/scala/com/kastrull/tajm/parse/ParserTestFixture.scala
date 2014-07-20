@@ -2,30 +2,40 @@ package com.kastrull.tajm.parse
 
 import org.scalatest.FreeSpec
 import org.scalatest.Matchers
+import scala.util.parsing.combinator._
+import com.kastrull.tajm.parse.Parser._
+import com.kastrull.tajm.Time
 
-import com.kastrull.tajm.parse.Parser.RichResult
+trait ParserTestFixture[T]
+  extends FreeSpec
+  with Matchers {
 
-object ParserTestFixture {
-  
-}
+  implicit class ImplicitTime(hour: Int) {
+    def h = Time(hour * 60)
+    def h(minutes: Int) = Time(hour * 60 + minutes)
+  }
 
-trait ParserTestFixture[T] 
-extends FreeSpec with Matchers {
-
-  import ParserTestFixture._
-  
   implicit class ResultAsserter(source: String) {
 
     def becomes(expected: T): Unit = {
-      val actualResult = parser(source)
-      val command = actualResult.command
-      assert(command == expected)
+      val actualResult = parseAll(parser, source)
+      actualResult match {
+        case Success(actual, _) =>
+          assert(actual === expected)
+        case other =>
+          fail("Not expecting " + other)
+      }
+
+      val command = actualResult.get
+
     }
 
-    def becomes(expected: ParseError): Unit = {
-      val actualResult = parser(source)
-      val error = actualResult.error
-      assert(error == expected)
+    def fails(): Unit = {
+      val actualResult = parseAll(parser, source)
+      actualResult match {
+        case Failure(message, next) => ()
+        case other => fail("Not expecting " + other)
+      }
     }
   }
 

@@ -1,52 +1,32 @@
 package com.kastrull.tajm.parse
 
-import com.kastrull.tajm.ast._
+import com.kastrull.tajm.Work
+import com.kastrull.tajm.Activity
+import com.kastrull.tajm.TimeRange
+import scala.language.postfixOps
 
 class WorkParserTest
   extends ParserTestFixture[Work] {
-  
-  val range = TimeRange(Time(9), Time(10))
-  val activity = Activity("a","b","c")
 
-  val activityParser = new Parser[Activity] {
-    def apply(s: String) = s match {
-      case "activity" => Left(activity)
-      case e => Right(TestError(e, 100))
-    }
-  }
+  def parser = Parser.work
 
-  val rangeParser = new Parser[TimeRange] {
-    def apply(s: String) = s match {
-      case "range" => Left(range)
-      case e => Right(TestError(e, 100))
-    }
-  }
-  
-  val commentParser = new Parser[Comment] {
-    def apply(s: String) = s match {
-      case e => Right(TestError(e, 100))
-    }
-  }
-
-  def parser = WorkParser(
-      activityParser, 
-      rangeParser, 
-      commentParser)
-
-  "without comment" - {
-    
-    "simple activity and time" in {
-    	"a b" becomes Work(activity, range)
-    }
-    //FIXME
+  "without comment" in {
+    "work /a 9..10" becomes
+      Work(
+        Activity("a"),
+        TimeRange(9 h, 10 h))
   }
 
   "with comment" in {
-    //FIXME
+    " work /a/b/c/9..10 \" hello world \"" becomes
+      Work(
+        Activity("a", "b", "c"),
+        TimeRange(9 h, 10 h),
+        Some("hello world"))
   }
-  
-  "failure" ignore {
-    
-    
+
+  "failure" in {
+    " /a 1..2 " fails ()
+    "work " fails ()
   }
 }

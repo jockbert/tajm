@@ -1,41 +1,30 @@
 package com.kastrull.tajm.parse
 
-import com.kastrull.tajm.ast._
-import com.kastrull.tajm.parse.Parser._
+import com.kastrull.tajm.Activity
 
 class ActivityParserTest
   extends ParserTestFixture[Activity] {
 
-  def parser = ActivityParser()
+  def parser = Parser.activity
 
-  def successfulParse(input: String, expected: Activity) = {
-    val result = parser(input)
-    assert(result.hasCommand)
-    assert(result.command === expected)
+  "root element" in {
+    "" becomes Activity()
+    "    " becomes Activity()
+    "/" becomes Activity()
+    " / " becomes Activity()
   }
 
-  "ActivityParser" - {
+  "one level element" in {
+    "/a" becomes Activity("a")
+    "/v/" becomes Activity("v")
+  }
 
-    "root element" ignore { // FIXME solve
-      successfulParse("", Activity())
-      successfulParse("    ", Activity())
-      successfulParse("/", Activity())
-      successfulParse(" / ", Activity())
-    }
+  "multiple level element" in {
+    "/a/b/c" becomes Activity("a", "b", "c")
+    " /v/W/ " becomes Activity("v", "W")
+  }
 
-    "one level element" - {
-      successfulParse("/a", Activity("a"))
-      successfulParse("/v/", Activity("v"))
-    }
-    
-    "multiple level element" - {
-      successfulParse("/a/b/c", Activity("a","b","c"))
-      successfulParse(" /v/W/ ", Activity("v","W"))
-    }
-
-    "failures" ignore {
-      //FIXME failures
-    }
-
+  "failures" in {
+    "a/b" fails ()
   }
 }

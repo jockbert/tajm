@@ -1,30 +1,39 @@
 package com.kastrull.tajm.parse
 
 import org.scalatest._
-import com.kastrull.tajm.ast.Comment
 
-class CommentParserTest extends ParserTestFixture[Comment] {
+class CommentParserTest
+  extends ParserTestFixture[Option[String]] {
 
-  val parser = CommentParser()
+  val parser = Parser.comment
 
-  "CommentParser" - {
+  "should accept anything" in {
+    "\"\"" becomes Some("")
+    "\"\r\n\"" becomes Some("")
+    "\"xxx\n\"" becomes Some("xxx")
+    "\"hejkon bejkon\n\"" becomes Some("hejkon bejkon")
+    "\"a\nb\tc\"" becomes Some("a\nb\tc")
 
-    "should accept anything" in {
-      "" becomes Comment("")
-      "xxx" becomes Comment("xxx")
-      "hejkon bejkon" becomes Comment("hejkon bejkon")
-      "a\nb\tc" becomes Comment("a\nb\tc")
-    }
+  }
 
-    "should trim extra whitespace" in {
-      " " becomes Comment("")
-      " xxx" becomes Comment("xxx")
-      "xxx " becomes Comment("xxx")
-      "  x  x  x  " becomes Comment("x  x  x")
-      "\txxx\t" becomes Comment("xxx")
-    }
-    
-    
+  "should trim extra whitespace" in {
+    " \"\" " becomes Some("")
+    " \"xxx\"" becomes Some("xxx")
+    "\"xxx\" " becomes Some("xxx")
+    " \"   x  x  x   \"  " becomes Some("x  x  x")
+    "\t\"\txxx\t\r\"\t" becomes Some("xxx")
+  }
+
+  "no comment" in {
+    "" becomes None
+    "  \t \t " becomes None
+  }
+
+  "failure" in {
+    "not a comment" fails ()
+    " not a comment " fails ()
+    "\"not a comment" fails ()
+    "not a comment\"" fails ()
   }
 }
 
