@@ -10,38 +10,47 @@ case class Work(
   activity: Activity,
   range: TimeRange = TimeRange(Time(0), Time(0)),
   comment: Option[String] = None)
-  extends LineCommand
+    extends LineCommand
 
 case class AccumulatedDiff(
   activity: Activity,
   diff: Time = Time(0),
   comment: Option[String] = None)
-  extends LineCommand
+    extends LineCommand
 
 object Expect {
   val DAY = Day()
   val WEEK = Week()
-  
+
   sealed trait Period;
   case class Day() extends Period {}
   case class Week() extends Period {}
 }
 
 case class Expect(
-  activity: Activity, 
-  expected: Time, 
-  period: Expect.Period, 
+  activity: Activity,
+  expected: Time,
+  period: Expect.Period,
   comment: Option[String] = None)
-  extends LineCommand
+    extends LineCommand
 
 case class Unexpect(
   activity: Activity,
   comment: Option[String] = None)
-  extends LineCommand
-  
+    extends LineCommand
+
 case class Note(
   comment: Option[String] = None)
-  extends LineCommand
+    extends LineCommand
+
+object TimeImplicits {
+  import scala.language.implicitConversions
+
+  implicit def hoursToTime(hours: Int) =
+    Time(hours * 60)
+  implicit def hourAndMinuteTupleToTime(hm: (Int, Int)) =
+    Time(hm._1 * 60 + hm._2)
+}
 
 case class Time(minutes: Int)
 
@@ -51,8 +60,8 @@ case class Activity(name: String*) {
 
   def isParentOf(other: Activity): Boolean = {
     val depth = name.length
-    def otherIsLonger = other.name.length > depth
-    def equalPrefix = other.name.take(depth) == name
+      def otherIsLonger = other.name.length > depth
+      def equalPrefix = other.name.take(depth) == name
 
     otherIsLonger && equalPrefix
   }
