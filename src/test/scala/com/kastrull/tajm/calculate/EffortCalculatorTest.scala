@@ -2,28 +2,25 @@ package com.kastrull.tajm.calculate
 
 import org.scalatest.FreeSpec
 import org.scalatest.Matchers
-import com.kastrull.tajm.Day
-import org.joda.time.LocalDate
+
 import com.kastrull.tajm.Activity
-import com.kastrull.tajm.Work
-import com.kastrull.tajm.Work
+import com.kastrull.tajm.TimeImplicits.hoursToTime
 import com.kastrull.tajm.TimeRange
-import com.kastrull.tajm.Time
-import com.kastrull.tajm.TimeImplicits._
+import com.kastrull.tajm.Work
+
+import EffortCalculator.EffortMap
 
 class EffortCalculatorTest
     extends FreeSpec
     with Matchers {
-
-  import EffortCalculator._
 
   trait WithExpected {
     def expects(expected: EffortMap): Unit
   }
 
   val aa = Activity("aa")
-  val aag = Activity("aa","g")
-  val aagh = Activity("aa","g","h")
+  val aag = Activity("aa", "g")
+  val aagh = Activity("aa", "g", "h")
   val bb = Activity("bb")
 
   def givenWork(works: Work*) = new WithExpected {
