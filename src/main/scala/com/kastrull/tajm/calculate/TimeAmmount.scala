@@ -4,7 +4,7 @@ import org.joda.time.LocalDate
 import TimeAmmount.DailyAmmounts
 
 object TimeAmmount {
-
+  
   type DailyAmmount = (LocalDate, Option[Int])
   type DailyAmmounts = Seq[DailyAmmount]
 

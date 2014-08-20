@@ -14,80 +14,129 @@ import com.kastrull.tajm.TimeRange
 import com.kastrull.tajm.AccumulatedDiff
 import com.kastrull.tajm.Expect
 import com.kastrull.tajm.Unexpect
+import com.kastrull.tajm.Day
+import com.kastrull.tajm.Day
+
+import com.kastrull.tajm.TimeImplicits._
 
 class ExpectedWorkConverterTest
     extends FreeSpec
     with Matchers {
 
-  val march1 = new LocalDate(2014,3,1)
-  val activity = Activity("a")
-  
+  val march1 = new LocalDate(2014, 3, 1)
+  val march5 = new LocalDate(2014, 3, 5)
+  val activityA = Activity("a")
+  val activityB = Activity("b")
+
   trait Converter {
-      val calculator = ExpectationConverter()
+    val calculator = ExpectationConverter()
   }
+
+  trait DaysToExpectedTimeAmmountsTest extends Converter {
+    def expects(expected: Map[Activity, DailyAmmounts])
+  }
+
+  def daysToExpectedTimeAmmounts(days: Seq[Day]) =
+    new DaysToExpectedTimeAmmountsTest {
+      def expects(expected: Map[Activity, DailyAmmounts]) = {
+        val actual = calculator.daysToExpectedTimeAmmounts(days)
+        assert(expected === actual)
+      }
+    }
+
+  "days to expected time ammounts" - {
+
+    "no expectations" in
+      daysToExpectedTimeAmmounts {
+        Nil
+      }.expects(Map.empty)
+
+    "one activity expectation under one day" in {
+      val day = Day(march1, Expect(activityA, 4, Expect.DAY) :: Nil)
   
+      val ammountsA = (march1, Some(4 * 60)) :: Nil
+
+      daysToExpectedTimeAmmounts {
+        day :: Nil
+      }.expects {
+        Map(activityA -> ammountsA)
+      }
+    }
+
+    "multiple expectations under multiple days" in {
+
+      val day1 = Day(march1,
+        Expect(activityA, 4, Expect.DAY) ::
+          Expect(activityB, 1, Expect.DAY) :: Nil)
+
+      val day5 = Day(march5, Unexpect(activityB) :: Nil)
+
+      val ammountsA =
+        (march1, Some(4 * 60)) :: Nil
+
+      val ammountsB =
+        (march1, Some(1 * 60)) ::
+          (march5, None) :: Nil
+
+      daysToExpectedTimeAmmounts {
+        day1 :: day5 :: Nil
+      }.expects {
+        Map(
+          activityA -> ammountsA,
+          activityB -> ammountsB
+        )
+      }
+    }
+  }
+
   trait LineCommandTest extends Converter {
-    def expected: Option[(Activity, Option[Int])]
-    
-    def test(cmd: LineCommand ) =     {
-      val actual = calculator.calculateLineCommand(cmd)  
-      assert(expected === actual)
-    }
-    
-  }
-  
-  
-  ".calculate()" - {
-    "no expectations" in new Converter {
-
-      val ammounts: Map[Activity, DailyAmmounts] = calculator.calculate()
-      val expected = Map.empty[Activity, DailyAmmounts]
-      assert(expected === ammounts)
-    }
+    def expects(expected: Option[(Activity, Option[Int])])
   }
 
-  ".calculateOneActivity()" -{
-    "one day" ignore new Converter {
-
-    // val ammounts: DailyAmmounts = calculator.calculateOneActivity(
-     //     Day(march1,Expect()))
-
-      val expected = List.empty[DailyAmmount]
-
-    //  assert(expected === ammounts)
-
+  def translateLineCommand(cmd: LineCommand) =
+    new LineCommandTest {
+      def expects(expected: Option[(Activity, Option[Int])]) = {
+        val actual = calculator.translateLineCommand(cmd)
+        assert(expected === actual)
+      }
     }
+
+  "translate line command" - {
+
+    "Note" in
+      translateLineCommand {
+        Note(Some("Hello"))
+      }.expects(None)
+
+    "Work" in
+      translateLineCommand {
+        Work(activityA, TimeRange(1, 2))
+      }.expects(None)
+
+    "AccumulatedDiff" in
+      translateLineCommand {
+        AccumulatedDiff(activityA, 1)
+      }.expects(None)
+
+    "Expect day" in
+      translateLineCommand {
+        Expect(activityA, 6, Expect.DAY)
+      }.expects {
+        Some((activityA, Some(60 * 6)))
+      }
+
+    "Expect week" in
+      translateLineCommand {
+        Expect(activityA, 40, Expect.WEEK)
+      }.expects {
+        Some((activityA, Some(60 * 8)))
+      }
+
+    "Unexpect" in
+      translateLineCommand {
+        Unexpect(activityA)
+      }.expects {
+        Some((activityA, None))
+      }
   }
-
-  ".calculateLineCommand()" - {
-    
-    "Note" in new LineCommandTest {
-      def expected = None
-      test(Note(Some("Hello")))
-    }
-    
-    "Work" in new LineCommandTest {
-      def expected = None
-      test(Work(activity,TimeRange(1,2)))
-    }
-    
-    "AccumulatedDiff" in new LineCommandTest {
-      def expected = None
-      test(AccumulatedDiff(activity,1))
-    }
-    "Expect day" in new LineCommandTest {
-      def expected = Some((activity,Some(60*6)))
-      test(Expect(activity,6,Expect.DAY))
-    }
-    "Expect week" in new LineCommandTest {
-      def expected = Some((activity,Some(60*8)))
-      test(Expect(activity,40,Expect.WEEK))
-    }
-    
-    "Unexpect" in new LineCommandTest {
-      def expected = Some((activity,None))
-      test(Unexpect(activity))
-    }
-  }
-
 }
