@@ -2,15 +2,17 @@ name := "Hello tajm"
 
 version := "0.1"
 
-scalaVersion := "2.10.3"
+scalaVersion := "2.11.2"
 
 scalacOptions += "-feature"
 
 scalacOptions += "-deprecation"
 
-libraryDependencies += "org.scalatest" % "scalatest_2.10" % "2.0" % "test"
+libraryDependencies += "org.scalatest" % "scalatest_2.11" % "2.2.1" % "test"
 
-libraryDependencies += "org.scalacheck" %% "scalacheck" % "1.11.3" % "test"
+libraryDependencies += "org.scalacheck" %% "scalacheck" % "1.12.0" % "test"
+
+libraryDependencies += "org.scala-lang.modules" %% "scala-parser-combinators" % "1.0.2"
 
 //see: https://github.com/nscala-time/nscala-time
 libraryDependencies += "com.github.nscala-time" %% "nscala-time" % "1.2.0"
