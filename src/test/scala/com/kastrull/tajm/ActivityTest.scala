@@ -1,7 +1,23 @@
 package com.kastrull.tajm
 
 import org.scalatest.FreeSpec
+import org.scalacheck._
 import org.scalatest.Matchers
+
+class ActivityProperies extends Properties("Activity") {
+  import Prop.forAll
+  import Prop.BooleanOperators
+  import scala.language.postfixOps
+
+  property("isChildOf") = forAll { (a: Seq[String], b: Seq[String]) =>
+    (b.length > 0) ==> {
+      val parent = Activity(a: _*)
+      val child = Activity((a ++ b): _*)
+      child.isChildOf(parent)
+    }
+  }
+
+}
 
 class ActivityTest extends FreeSpec with Matchers {
 
