@@ -17,6 +17,12 @@ class ActivityProperies extends Properties("Activity") {
     }
   }
 
+  property("isParentOf") = forAll { (a: Seq[String], b: Seq[String]) =>
+    val parent = Activity(a: _*)
+    val child = Activity((a ++ b): _*)
+    parent.isParentOf(child)
+  }
+
 }
 
 class ActivityTest extends FreeSpec with Matchers {
