@@ -4,3 +4,6 @@ target/
 .cache
 .history
 .settings
+.cache-main
+.cache-tests
+/bin/
