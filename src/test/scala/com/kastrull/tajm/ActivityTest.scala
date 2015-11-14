@@ -20,7 +20,13 @@ class ActivityProperies extends Properties("Activity") {
   property("isParentOf") = forAll { (a: Seq[String], b: Seq[String]) =>
     val parent = Activity(a: _*)
     val child = Activity((a ++ b): _*)
-    parent.isParentOf(child)
+    parent.isParentOf(child) || b.isEmpty
+  }
+
+  property("isEqual") = forAll { (ss: Seq[String]) =>
+    val a = Activity(ss: _*)
+    val b = Activity(ss: _*)
+    a == b
   }
 
 }
