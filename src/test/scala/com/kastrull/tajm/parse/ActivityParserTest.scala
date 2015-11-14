@@ -3,7 +3,7 @@ package com.kastrull.tajm.parse
 import com.kastrull.tajm.Activity
 
 class ActivityParserTest
-  extends ParserTestFixture[Activity] {
+    extends ParserTestFixture[Activity] {
 
   def parser = Parser.activity
 

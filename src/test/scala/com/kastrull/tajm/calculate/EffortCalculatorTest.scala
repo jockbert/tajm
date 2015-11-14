@@ -38,31 +38,28 @@ class EffortCalculatorTest
 
   "one work" in {
     givenWork(
-      Work(aa, TimeRange(1, 2))
-    ).expects(Map(aa -> 60))
+      Work(aa, TimeRange(1, 2))).expects(Map(aa -> 60))
   }
 
   "multiple work - one activity" in {
     givenWork(
       Work(aa, TimeRange(1, 2)),
-      Work(aa, TimeRange(3, 4))
-    ).expects(Map(aa -> 120))
+      Work(aa, TimeRange(3, 4))).expects(Map(aa -> 120))
   }
 
   "multiple work - multiple activities" in {
     givenWork(
       Work(aa, TimeRange(1, 2)),
       Work(bb, TimeRange(2, 3)),
-      Work(aa, TimeRange(3, 4))
-    ).expects(Map(aa -> 120, bb -> 60))
+      Work(aa, TimeRange(3, 4))).expects(Map(aa -> 120, bb -> 60))
   }
 
   "nested activites" in {
     givenWork(
       Work(aa, TimeRange(1, 2)),
       Work(aag, TimeRange(2, 4)),
-      Work(aagh, TimeRange(4, 7))
-    ).expects(Map(aa -> 60, aag -> 120, aagh -> 180))
+      Work(aagh, TimeRange(4, 7))).expects(Map(aa -> 60, aag -> 120, aagh -> 180))
   }
 }
 
+// FIXME Update behavior and change from test to property

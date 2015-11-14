@@ -28,3 +28,5 @@ class WorkTest extends FreeSpec with Matchers {
     assert(work2.comment === None)
   }
 }
+
+// FIXME Update behavior and change from test to property

@@ -5,7 +5,7 @@ import com.kastrull.tajm._
 import scala.language.postfixOps
 
 class CompleteLogParseTest
-  extends ParserTestFixture[Seq[Day]] {
+    extends ParserTestFixture[Seq[Day]] {
 
   def parser = Parser.completeLog
 
@@ -34,3 +34,5 @@ class CompleteLogParseTest
     input becomes expected
   }
 }
+
+// FIXME Update behavior and change from test to property

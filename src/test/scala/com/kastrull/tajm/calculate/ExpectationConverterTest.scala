@@ -53,7 +53,7 @@ class ExpectedWorkConverterTest
 
     "one activity expectation under one day" in {
       val day = Day(march1, Expect(activityA, 4, Expect.DAY) :: Nil)
-  
+
       val ammountsA = (march1, Some(4 * 60)) :: Nil
 
       daysToExpectedTimeAmmounts {
@@ -83,8 +83,7 @@ class ExpectedWorkConverterTest
       }.expects {
         Map(
           activityA -> ammountsA,
-          activityB -> ammountsB
-        )
+          activityB -> ammountsB)
       }
     }
   }
@@ -140,3 +139,5 @@ class ExpectedWorkConverterTest
       }
   }
 }
+
+// FIXME Update behavior and change from test to property

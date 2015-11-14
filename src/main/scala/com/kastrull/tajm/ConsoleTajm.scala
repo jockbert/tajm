@@ -1,5 +1,5 @@
 package com.kastrull.tajm
 
-object Tajm extends App {
+object ConsoleTajm extends App {
   println("Hello Tajm!")
 }

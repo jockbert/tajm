@@ -5,7 +5,7 @@ import com.kastrull.tajm.Activity
 import scala.language.postfixOps
 
 class AccumulatedDiffParserTest
-  extends ParserTestFixture[AccumulatedDiff] {
+    extends ParserTestFixture[AccumulatedDiff] {
 
   def parser = Parser.accDiff
 
@@ -28,3 +28,5 @@ class AccumulatedDiffParserTest
       AccumulatedDiff(Activity(), 0 h, Some("clear root"))
   }
 }
+
+// FIXME Update behavior and change from test to property

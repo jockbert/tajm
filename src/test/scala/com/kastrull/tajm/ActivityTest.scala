@@ -65,3 +65,5 @@ class ActivityTest extends FreeSpec with Matchers {
     assert(!b.isParentOf(cd))
   }
 }
+
+// FIXME Update behavior and change from test to property

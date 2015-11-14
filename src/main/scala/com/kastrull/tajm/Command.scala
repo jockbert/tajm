@@ -60,8 +60,8 @@ case class Activity(name: String*) {
 
   def isParentOf(other: Activity): Boolean = {
     val depth = name.length
-      def otherIsLonger = other.name.length > depth
-      def equalPrefix = other.name.take(depth) == name
+    def otherIsLonger = other.name.length > depth
+    def equalPrefix = other.name.take(depth) == name
 
     otherIsLonger && equalPrefix
   }
@@ -74,3 +74,5 @@ case class Day(
   date: LocalDate,
   lines: Seq[LineCommand] = Nil,
   comment: Option[String] = None) {}
+
+// FIXME Update behavior

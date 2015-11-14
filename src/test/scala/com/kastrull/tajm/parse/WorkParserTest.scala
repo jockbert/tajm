@@ -6,7 +6,7 @@ import com.kastrull.tajm.TimeRange
 import scala.language.postfixOps
 
 class WorkParserTest
-  extends ParserTestFixture[Work] {
+    extends ParserTestFixture[Work] {
 
   def parser = Parser.work
 
@@ -30,3 +30,5 @@ class WorkParserTest
     "work " fails ()
   }
 }
+
+// FIXME Update behavior and change from test to property

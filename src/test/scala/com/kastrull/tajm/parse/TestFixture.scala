@@ -7,8 +7,8 @@ import com.kastrull.tajm.parse.Parser._
 import com.kastrull.tajm.Time
 
 trait ParserTestFixture[T]
-  extends FreeSpec
-  with Matchers {
+    extends FreeSpec
+    with Matchers {
 
   implicit class ImplicitTime(hour: Int) {
     def h = Time(hour * 60)
@@ -34,10 +34,12 @@ trait ParserTestFixture[T]
       val actualResult = parseAll(parser, source)
       actualResult match {
         case Failure(message, next) => ()
-        case other => fail("Not expecting " + other)
+        case other                  => fail("Not expecting " + other)
       }
     }
   }
 
   def parser: Parser[T]
 }
+
+// FIXME Update behavior and change from test to property

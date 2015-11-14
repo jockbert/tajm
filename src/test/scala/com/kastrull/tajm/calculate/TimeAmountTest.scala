@@ -85,7 +85,7 @@ class TimeAmountTest
     val a3 = TimeAmmount(
       march7 -> Some(10),
       march9 -> None)
-      
+
     val other = TimeAmmount(
       march7 -> Some(9),
       march9 -> None)
@@ -93,14 +93,14 @@ class TimeAmountTest
     assert(a1 === a2)
     assert(a1 === a3)
     assert(a2 === a3)
-    
+
     assert(other !== a1)
     assert(other !== a2)
     assert(other !== a3)
   }
-  
+
   "range of dates" in {
-        val ammount = TimeAmmount(
+    val ammount = TimeAmmount(
       march8 -> Some(13),
       april1 -> None)
 
@@ -113,9 +113,9 @@ class TimeAmountTest
     assert(ammount.minutes(march31) === Some(13))
     assert(ammount.minutes(april1) === None)
   }
-  
+
   "different consecutive ammounts" in {
-        val ammount = TimeAmmount(
+    val ammount = TimeAmmount(
       march9 -> Some(23),
       march8 -> Some(14),
       march31 -> Some(5),
@@ -130,6 +130,7 @@ class TimeAmountTest
     assert(ammount.minutes(march31) === Some(5))
     assert(ammount.minutes(april1) === None)
   }
-  
-  
+
 }
+
+// FIXME Update behavior and change from test to property

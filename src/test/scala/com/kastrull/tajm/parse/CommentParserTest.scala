@@ -3,7 +3,7 @@ package com.kastrull.tajm.parse
 import org.scalatest._
 
 class CommentParserTest
-  extends ParserTestFixture[Option[String]] {
+    extends ParserTestFixture[Option[String]] {
 
   val parser = Parser.comment
 
@@ -37,3 +37,4 @@ class CommentParserTest
   }
 }
 
+// FIXME Update behavior and change from test to property

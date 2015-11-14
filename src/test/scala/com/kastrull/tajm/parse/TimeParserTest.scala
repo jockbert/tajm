@@ -45,3 +45,5 @@ class TimeParserTest extends ParserTestFixture[Time] {
     "1.2.3" fails ()
   }
 }
+
+// FIXME Update behavior and change from test to property

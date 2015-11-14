@@ -23,3 +23,5 @@ class TimeRangeParserTest extends ParserTestFixture[TimeRange] {
     "0..0..0" fails ()
   }
 }
+
+// FIXME Update behavior and change from test to property

@@ -29,3 +29,5 @@ class UnexpectParserTest extends ParserTestFixture[Unexpect] {
       Unexpect(Activity(), Some("hello"))
   }
 }
+
+// FIXME Update behavior and change from test to property

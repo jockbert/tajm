@@ -29,3 +29,5 @@ class ExpectParserTest extends ParserTestFixture[Expect] {
         Expect.WEEK, Some("hello"))
   }
 }
+
+// FIXME Update behavior and change from test to property

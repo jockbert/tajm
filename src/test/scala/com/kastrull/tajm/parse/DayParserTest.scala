@@ -26,7 +26,7 @@ class DayParserTest extends ParserTestFixture[Day] {
   "day with comment and work" in {
     "20140102" becomes Day(new LocalDate(2014, 1, 2))
 
-    """ | 140721 "monday" 
+    """ | 140721 "monday"
     	| work /a 1..2
     	| """.stripMargin becomes
       Day(
@@ -39,11 +39,11 @@ class DayParserTest extends ParserTestFixture[Day] {
 
     val a = Activity("a")
 
-    """| 1/2 -14 
+    """| 1/2 -14
        | expect /a day 4 	"comment1"
        | accdiff /a 05:30 	"comment2"
        | work /a 1..2		"comment3"
-       | unexpect /a 		"comment4" 
+       | unexpect /a 		"comment4"
        | "some note"
        |""".stripMargin becomes
       Day(new LocalDate(2014, 2, 1),
@@ -56,3 +56,5 @@ class DayParserTest extends ParserTestFixture[Day] {
   }
 
 }
+
+// FIXME Update behavior and change from test to property
