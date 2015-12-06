@@ -28,3 +28,5 @@ class ActivityParserTest
     "a/b" fails ()
   }
 }
+
+// FIXME Update behavior and change from test to property
