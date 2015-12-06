@@ -8,7 +8,9 @@ class ActivityProps extends Properties("Activity") {
   type Path = Seq[String]
 
   property("isChildOf") = forAll { (a: Path, b: Path) =>
-    (a.startsWith(b) && a.length > 0) == Activity(a).isChildOf(Activity(b))
+    val child = Activity(a ++ b)
+    val parent = Activity(a)
+    child.isChildOf(parent) || b.isEmpty
   }
 
   property("isParentOf") = forAll { (a: Path, b: Path) =>
