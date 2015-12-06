@@ -31,7 +31,7 @@ object Parser extends JavaTokenParsers {
   def activity: Parser[Activity] = {
     def optionalEnd: Parser[Unit] = """/?""".r ^^ { case _ => () }
 
-    rep("/" ~> ident) <~ optionalEnd ^^ { case s => Activity(s: _*) }
+    rep("/" ~> ident) <~ optionalEnd ^^ { case s => Activity(s) }
   }
 
   def someComment: Parser[Some[String]] = "\"" ~> """[^\"]*""".r <~ "\"" ^^ { case text => Some(text.trim()) }
@@ -46,7 +46,7 @@ object Parser extends JavaTokenParsers {
 
   def expect: Parser[Expect] = {
     def period: Parser[Expect.Period] = ("day" | "week") ^^ {
-      case "day" => Expect.DAY
+      case "day"  => Expect.DAY
       case "week" => Expect.WEEK
     }
 
@@ -87,4 +87,3 @@ object Parser extends JavaTokenParsers {
 
   def completeLog: Parser[Seq[Day]] = rep(day)
 }
-
