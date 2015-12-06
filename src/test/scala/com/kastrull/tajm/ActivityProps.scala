@@ -4,7 +4,7 @@ import org.scalacheck.Prop.forAll
 import org.scalacheck.Prop.propBoolean
 import org.scalacheck.Properties
 
-class ActivityProperies extends Properties("Activity") {
+class ActivityProps extends Properties("Activity") {
   type Path = Seq[String]
 
   property("isChildOf") = forAll { (a: Path, b: Path) =>
