@@ -10,20 +10,21 @@ class ActivityProps extends Properties("Activity") {
   property("isChildOf") = forAll { (a: Path, b: Path) =>
     val child = Activity(a ++ b)
     val parent = Activity(a)
-    child.isChildOf(parent) || b.isEmpty
+    child.isChildOf(parent) ^ b.isEmpty
   }
 
   property("isParentOf") = forAll { (a: Path, b: Path) =>
     val parent = Activity(a)
     val child = Activity(a ++ b)
-    parent.isParentOf(child) || b.isEmpty
+    parent.isParentOf(child) ^ b.isEmpty
   }
 
-  property("equals") = forAll { p: Path =>
-    Activity(p) == Activity(p)
+  property("equals") = forAll { (a: Path, b: Path) =>
+    Activity(a) == Activity(b) ^ a != b
   }
 
-  property("name") = forAll { p: Path =>
-    Activity(p).name == p
+  property("name") = forAll { (a: Path, b: Path) =>
+    Activity(a).name == b ^ a != b
   }
+
 }
