@@ -3,7 +3,7 @@ package com.kastrull.tajm.parse
 import org.scalatest.FreeSpec
 import org.scalatest.Matchers
 import scala.util.parsing.combinator._
-import com.kastrull.tajm.parse LegacyParser._
+import com.kastrull.tajm.parse.LegacyParser._
 import com.kastrull.tajm.Time
 
 trait ParserTestFixture[T]
@@ -39,7 +39,7 @@ trait ParserTestFixture[T]
     }
   }
 
-  def parser: Parser[T]
+  def parser: LegacyParser.Parser[T]
 }
 
 // FIXME Update behavior and change from test to property
