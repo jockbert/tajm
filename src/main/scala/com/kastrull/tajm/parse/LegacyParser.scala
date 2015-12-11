@@ -4,7 +4,8 @@ import com.kastrull.tajm._
 import scala.util.parsing.combinator._
 import org.joda.time.LocalDate
 
-object Parser extends JavaTokenParsers {
+@Deprecated
+object LegacyParser extends JavaTokenParsers {
 
   def time: Parser[Time] = {
     def intOrEmpty: Parser[Int] = int | empty

@@ -4,7 +4,7 @@ import com.kastrull.tajm.Note
 
 class NoteParserTest extends ParserTestFixture[Note] {
 
-  def parser = Parser.note
+  def parser = LegacyParser.note
 
   "a note" in {
     """ "a b c" """ becomes Note(Some("a b c"))

@@ -5,7 +5,7 @@ import com.kastrull.tajm.Time
 
 class TimeRangeParserTest extends ParserTestFixture[TimeRange] {
 
-  def parser = Parser.timeRange
+  def parser = LegacyParser.timeRange
 
   "proper timerange" in {
     "0 .. 10:04" becomes TimeRange(Time(0), Time(604))

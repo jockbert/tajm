@@ -7,7 +7,7 @@ import scala.language.postfixOps
 class CompleteLogParseTest
     extends ParserTestFixture[Seq[Day]] {
 
-  def parser = Parser.completeLog
+  def parser = LegacyParser.completeLog
 
   val input = """
     |2014-05-06

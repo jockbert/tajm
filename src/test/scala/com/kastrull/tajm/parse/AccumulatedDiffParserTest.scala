@@ -7,7 +7,7 @@ import scala.language.postfixOps
 class AccumulatedDiffParserTest
     extends ParserTestFixture[AccumulatedDiff] {
 
-  def parser = Parser.accDiff
+  def parser = LegacyParser.accDiff
 
   "set with specific value" in {
     "accdiff /v 1:30" becomes

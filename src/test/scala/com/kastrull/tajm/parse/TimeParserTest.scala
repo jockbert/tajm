@@ -5,7 +5,7 @@ import com.kastrull.tajm.Time
 
 class TimeParserTest extends ParserTestFixture[Time] {
 
-  val parser = Parser.time
+  val parser = LegacyParser.time
 
   "simple hours" in {
     "" becomes Time(0)

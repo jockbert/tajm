@@ -8,7 +8,7 @@ import scala.language.postfixOps
 class WorkParserTest
     extends ParserTestFixture[Work] {
 
-  def parser = Parser.work
+  def parser = LegacyParser.work
 
   "without comment" in {
     "work /a 9..10" becomes

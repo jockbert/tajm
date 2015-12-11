@@ -3,7 +3,7 @@ package com.kastrull.tajm.parse
 import org.scalatest.FreeSpec
 import org.scalatest.Matchers
 import scala.util.parsing.combinator._
-import com.kastrull.tajm.parse.Parser._
+import com.kastrull.tajm.parse LegacyParser._
 import com.kastrull.tajm.Time
 
 trait ParserTestFixture[T]

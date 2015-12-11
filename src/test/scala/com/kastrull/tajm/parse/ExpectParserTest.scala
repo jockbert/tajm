@@ -6,7 +6,7 @@ import scala.language.postfixOps
 
 class ExpectParserTest extends ParserTestFixture[Expect] {
 
-  def parser = Parser.expect
+  def parser = LegacyParser.expect
 
   "with day" in {
     "expect /a day 4" becomes

@@ -5,7 +5,7 @@ import com.kastrull.tajm.Activity
 class ActivityParserTest
     extends ParserTestFixture[Activity] {
 
-  def parser = Parser.activity
+  def parser = LegacyParser.activity
 
   "root element" in {
     "" becomes Activity()

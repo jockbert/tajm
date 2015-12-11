@@ -6,7 +6,7 @@ import scala.language.postfixOps
 
 class UnexpectParserTest extends ParserTestFixture[Unexpect] {
 
-  def parser = Parser.unexpect
+  def parser = LegacyParser.unexpect
 
   "with day" in {
     "unexpect /a" becomes

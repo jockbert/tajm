@@ -4,7 +4,7 @@ import org.joda.time.LocalDate
 
 class DateParserTest extends ParserTestFixture[LocalDate] {
 
-  def parser = Parser.date
+  def parser = LegacyParser.date
 
   "Complete" in {
     "20140102" becomes new LocalDate(2014, 1, 2)

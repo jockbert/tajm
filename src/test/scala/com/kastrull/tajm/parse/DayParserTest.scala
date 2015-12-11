@@ -13,7 +13,7 @@ import scala.language.postfixOps
 
 class DayParserTest extends ParserTestFixture[Day] {
 
-  def parser = Parser.day
+  def parser = LegacyParser.day
 
   "day of no item" in {
     "20140102" becomes Day(new LocalDate(2014, 1, 2))

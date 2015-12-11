@@ -5,7 +5,7 @@ import org.scalatest._
 class CommentParserTest
     extends ParserTestFixture[Option[String]] {
 
-  val parser = Parser.comment
+  val parser = LegacyParser.comment
 
   "should accept anything" in {
     "\"\"" becomes Some("")
