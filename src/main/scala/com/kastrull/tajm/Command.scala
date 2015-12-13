@@ -19,12 +19,12 @@ case class AccumulatedDiff(
     extends LineCommand
 
 object Expect {
-  val DAY = Day()
-  val WEEK = Week()
+  val DAY = Day
+  val WEEK = Week
 
   sealed trait Period;
-  case class Day() extends Period {}
-  case class Week() extends Period {}
+  case object Day extends Period
+  case object Week extends Period
 }
 
 case class Expect(
