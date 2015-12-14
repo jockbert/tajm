@@ -69,8 +69,8 @@ object LegacyParser extends JavaTokenParsers {
 
     def delimiter = """-?""".r ^^ { case _ => () }
     def year = fourDigits | twoDigits ^^ { case i => i }
-    def month = twoDigits | oneDigit ^^ { case s => s.toInt }
-    def day = twoDigits | oneDigit ^^ { case s => s.toInt }
+    def month = twoDigits | oneDigit ^^ { case s => s }
+    def day = twoDigits | oneDigit ^^ { case s => s }
 
     def addCentury(year: Int) = year + (if (year > 100) 0 else if (year > 70) 1900 else 2000)
 
