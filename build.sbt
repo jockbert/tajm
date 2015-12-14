@@ -23,3 +23,5 @@ unmanagedSourceDirectories in Test := (scalaSource in Test).value :: Nil
 
 
 org.scalastyle.sbt.ScalastylePlugin.Settings
+
+// wartremoverWarnings ++= Warts.unsafe
