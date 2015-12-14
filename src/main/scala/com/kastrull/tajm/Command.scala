@@ -75,6 +75,10 @@ case class Activity(name: Seq[String]) {
 
   def isChildOf(other: Activity) =
     other.isParentOf(this)
+
+  override def toString(): String =
+    "Activity(" + name.map("'" + _ + "'").mkString(", ") + ")"
+
 }
 
 case class Day(
