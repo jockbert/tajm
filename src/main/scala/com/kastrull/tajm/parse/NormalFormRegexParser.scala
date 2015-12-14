@@ -5,7 +5,12 @@ import com.kastrull.tajm.Activity
 
 protected case class NormalFormRegexParser() extends RegexParsers {
 
-  def activity: Parser[Activity] = """\/|(\/[^\/\s]+)+""".r ^^
-    { s => Activity(s.drop(1)) }
-
+  def activity: Parser[Activity] =
+    """(\/[^\/\s]*)+""".r ^^
+      {
+        _ match {
+          case "/"  => Activity()
+          case path => Activity(path.drop(1).split('/').toList)
+        }
+      }
 }

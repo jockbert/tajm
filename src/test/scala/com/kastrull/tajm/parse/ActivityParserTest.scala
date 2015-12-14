@@ -29,4 +29,31 @@ class ActivityParserTest
   }
 }
 
+import com.kastrull.tajm.Generators.genActivity
+
+import org.scalacheck.Prop.AnyOperators
+import org.scalacheck.Prop.forAll
+import org.scalacheck.Properties
+import com.kastrull.tajm.output.NormalFormFormatter
+
+class ActivityParserProps extends Properties("ActivityParser") {
+
+  val formatter = NormalFormFormatter()
+  val parser = NormalFormParser().activity _
+
+  property("formatter-parser-roundtrip") = forAll(genActivity) { a: Activity =>
+    val x = formatParseRoundtrip(a)
+    x ?= a
+  }
+
+  def formatParseRoundtrip(a: Activity) = {
+    val text = formatter.format(a)
+
+    parser(text) match {
+      case Left(a)        => a
+      case Right(message) => throw new Exception("Parse error " + message)
+    }
+  }
+}
+
 // FIXME Update behavior and change from test to property

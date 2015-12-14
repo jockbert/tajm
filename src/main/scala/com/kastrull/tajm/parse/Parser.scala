@@ -1,18 +1,29 @@
 package com.kastrull.tajm.parse
 
 import com.kastrull.tajm.Activity
+import Parser._
 
 object Parser {
-  type ParseResult[X] = scala.util.Try[X]
+  type ParseResult[VAL] = Either[VAL, String]
 }
 
 trait Parser {
-  import Parser._
 
   def activity(s: String): ParseResult[Activity]
-
 }
 
-case class NormalFormParser() extends {
+case class NormalFormParser() extends Parser {
 
+  private val parser = NormalFormRegexParser()
+
+  def translate[X](result: parser.ParseResult[X]): ParseResult[X] = {
+    result match {
+      case parser.Success(x, _)       => Left(x)
+      case parser.Error(message, _)   => Right(message)
+      case parser.Failure(message, _) => Right(message)
+    }
+  }
+
+  def activity(s: String): ParseResult[Activity] =
+    translate(parser.parseAll(parser.activity, s))
 }

@@ -6,10 +6,9 @@ object Generators {
   import Gen._
   import Arbitrary.arbitrary
 
+  val genPath = Gen.containerOf[Seq, String](Gen.alphaStr.filter { !_.isEmpty() })
+
   val genActivity = for {
-    path <- arbitrary[Seq[String]]
+    path <- genPath
   } yield Activity(path)
-
 }
-
-// FIXME Empty object
