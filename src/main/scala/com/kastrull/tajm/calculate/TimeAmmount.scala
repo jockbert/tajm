@@ -48,8 +48,7 @@ case class BasicTimeAmmount(dates: DailyAmmounts)
   }
 
   def definedFrom(): Option[LocalDate] =
-    if (dates.isEmpty) None
-    else Some(dates.head._1)
+    dates.headOption.map(_._1)
 
   def definedTo(): Option[LocalDate] =
     if (dates.isEmpty) None
