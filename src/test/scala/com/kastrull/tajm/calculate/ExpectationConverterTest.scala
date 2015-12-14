@@ -29,7 +29,7 @@ class ExpectedWorkConverterTest
   val activityB = Activity("b")
 
   trait Converter {
-    val calculator = ExpectationConverter()
+    val calculator = ExpectationConverter
   }
 
   trait DaysToExpectedTimeAmmountsTest extends Converter {

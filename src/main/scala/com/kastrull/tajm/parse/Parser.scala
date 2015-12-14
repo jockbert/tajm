@@ -12,9 +12,9 @@ trait Parser {
   def activity(s: String): ParseResult[Activity]
 }
 
-case class NormalFormParser() extends Parser {
+case object NormalFormParser extends Parser {
 
-  private val parser = NormalFormRegexParser()
+  private val parser = NormalFormRegexParser
 
   def translate[X](result: parser.ParseResult[X]): ParseResult[X] = {
     result match {

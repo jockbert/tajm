@@ -6,14 +6,14 @@ import com.kastrull.tajm.Work
 object EffortCalculator {
   type EffortMap = Map[Activity, Int]
 
-  def apply():EffortCalculator = BasicEffortCalculator()
+  def apply(): EffortCalculator = BasicEffortCalculator
 }
 
 trait EffortCalculator {
   def calculate(items: Seq[Work]): EffortCalculator.EffortMap
 }
 
-case class BasicEffortCalculator() extends EffortCalculator {
+case object BasicEffortCalculator extends EffortCalculator {
   import EffortCalculator._
 
   def calculate(item: Work): Int = {

@@ -9,18 +9,15 @@ import com.kastrull.tajm.Expect
 import com.kastrull.tajm.Unexpect
 import com.kastrull.tajm.Day
 
-object ExpectationConverter {
+case object ExpectationConverter {
 
   type ActivityAmmounts = Map[Activity, DailyAmmounts]
-}
-
-case class ExpectationConverter() {
 
   def daysToExpectedTimeAmmounts(days: Seq[Day]): Map[Activity, DailyAmmounts] = {
 
-      def removeActivityFromTuples(
-        grp: (Activity, Seq[(Activity, DailyAmmount)])): (Activity, DailyAmmounts) =
-        (grp._1, grp._2.map(_._2))
+    def removeActivityFromTuples(
+      grp: (Activity, Seq[(Activity, DailyAmmount)])): (Activity, DailyAmmounts) =
+      (grp._1, grp._2.map(_._2))
 
     val tuples: Seq[(Activity, DailyAmmount)] =
       for {

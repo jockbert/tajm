@@ -38,8 +38,8 @@ import com.kastrull.tajm.output.NormalFormFormatter
 
 class ActivityParserProps extends Properties("ActivityParser") {
 
-  val formatter = NormalFormFormatter()
-  val parser = NormalFormParser().activity _
+  val formatter = NormalFormFormatter
+  val parser = NormalFormParser.activity _
 
   property("formatter-parser-roundtrip") = forAll(genActivity) { a: Activity =>
     val x = formatParseRoundtrip(a)
