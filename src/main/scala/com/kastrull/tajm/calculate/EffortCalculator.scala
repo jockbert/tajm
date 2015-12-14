@@ -28,7 +28,7 @@ case object BasicEffortCalculator extends EffortCalculator {
 
     val byActivityDurations = durations.groupBy(_._1)
 
-    return byActivityDurations.map {
+    byActivityDurations.map {
       case (activity, acivityDurationTuples) =>
         val durations: Seq[Int] = acivityDurationTuples.map(_._2)
         val totalDuration: Int = durations.sum
