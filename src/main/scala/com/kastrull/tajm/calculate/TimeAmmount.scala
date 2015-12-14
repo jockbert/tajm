@@ -4,28 +4,28 @@ import org.joda.time.LocalDate
 import TimeAmmount.DailyAmmounts
 
 object TimeAmmount {
-  
+
   type DailyAmmount = (LocalDate, Option[Int])
   type DailyAmmounts = Seq[DailyAmmount]
 
   def apply(dates: DailyAmmount*): TimeAmmount = {
 
-      def sort(ds: Seq[DailyAmmount]) =
-        ds.sortWith((a, b) => a._1.compareTo(b._1) == -1)
+    def sort(ds: Seq[DailyAmmount]) =
+      ds.sortWith((a, b) => a._1.compareTo(b._1) == -1)
 
-      def removeRepetition(ds: DailyAmmounts) = {
-        val seed: (Option[Int], DailyAmmounts) = (None, Nil)
-        val result: (Option[Int], DailyAmmounts) = ds.foldLeft(seed) {
-          case ((lastAmmountOpt, result), (date, ammountOpt)) =>
+    def removeRepetition(ds: DailyAmmounts) = {
+      val seed: (Option[Int], DailyAmmounts) = (None, Nil)
+      val result: (Option[Int], DailyAmmounts) = ds.foldLeft(seed) {
+        case ((lastAmmountOpt, result), (date, ammountOpt)) =>
 
-            val newResult =
-              if (lastAmmountOpt == ammountOpt) result
-              else result :+ ((date, ammountOpt))
+          val newResult =
+            if (lastAmmountOpt == ammountOpt) result
+            else result :+ ((date, ammountOpt))
 
-            (ammountOpt, newResult)
-        }
-        result._2
+          (ammountOpt, newResult)
       }
+      result._2
+    }
 
     BasicTimeAmmount(
       removeRepetition(
