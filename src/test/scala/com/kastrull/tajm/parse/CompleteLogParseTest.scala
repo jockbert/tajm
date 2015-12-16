@@ -3,6 +3,10 @@ package com.kastrull.tajm.parse
 import com.github.nscala_time.time.Imports._
 import com.kastrull.tajm._
 import scala.language.postfixOps
+import com.kastrull.tajm.model.Work
+import com.kastrull.tajm.model.TimeRange
+import com.kastrull.tajm.model.Day
+import com.kastrull.tajm.model.Activity
 
 class CompleteLogParseTest
     extends ParserTestFixture[Seq[Day]] {

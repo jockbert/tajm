@@ -1,13 +1,13 @@
 package com.kastrull.tajm.calculate
 
 import org.joda.time.LocalDate
-import com.kastrull.tajm.Activity
+import com.kastrull.tajm.model.Activity
 import TimeAmmount.DailyAmmount
 import TimeAmmount.DailyAmmounts
-import com.kastrull.tajm.LineCommand
-import com.kastrull.tajm.Expect
-import com.kastrull.tajm.Unexpect
-import com.kastrull.tajm.Day
+import com.kastrull.tajm.model.LineCommand
+import com.kastrull.tajm.model.Expect
+import com.kastrull.tajm.model.Unexpect
+import com.kastrull.tajm.model.Day
 
 case object ExpectationConverter {
 

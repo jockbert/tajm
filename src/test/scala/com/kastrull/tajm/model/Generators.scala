@@ -1,4 +1,4 @@
-package com.kastrull.tajm
+package com.kastrull.tajm.model
 
 object Generators {
 

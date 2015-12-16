@@ -1,6 +1,6 @@
 package com.kastrull.tajm.parse
 
-import com.kastrull.tajm.Activity
+import com.kastrull.tajm.model.Activity
 
 class ActivityParserTest
     extends ParserTestFixture[Activity] {
@@ -29,7 +29,7 @@ class ActivityParserTest
   }
 }
 
-import com.kastrull.tajm.Generators.genActivity
+import com.kastrull.tajm.model.Generators.genActivity
 
 import org.scalacheck.Prop.AnyOperators
 import org.scalacheck.Prop.forAll

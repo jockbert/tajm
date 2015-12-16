@@ -3,10 +3,10 @@ package com.kastrull.tajm.calculate
 import org.scalatest.FreeSpec
 import org.scalatest.Matchers
 
-import com.kastrull.tajm.Activity
-import com.kastrull.tajm.TimeImplicits.hoursToTime
-import com.kastrull.tajm.TimeRange
-import com.kastrull.tajm.Work
+import com.kastrull.tajm.model.Activity
+import com.kastrull.tajm.model.TimeImplicits.hoursToTime
+import com.kastrull.tajm.model.TimeRange
+import com.kastrull.tajm.model.Work
 
 import EffortCalculator.EffortMap
 

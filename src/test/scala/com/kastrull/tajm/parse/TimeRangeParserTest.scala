@@ -1,7 +1,7 @@
 package com.kastrull.tajm.parse
 
-import com.kastrull.tajm.TimeRange
-import com.kastrull.tajm.Time
+import com.kastrull.tajm.model.TimeRange
+import com.kastrull.tajm.model.Time
 
 class TimeRangeParserTest extends ParserTestFixture[TimeRange] {
 

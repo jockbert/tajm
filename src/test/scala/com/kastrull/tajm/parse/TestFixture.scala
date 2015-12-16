@@ -4,7 +4,7 @@ import org.scalatest.FreeSpec
 import org.scalatest.Matchers
 import scala.util.parsing.combinator._
 import com.kastrull.tajm.parse.LegacyParser._
-import com.kastrull.tajm.Time
+import com.kastrull.tajm.model.Time
 
 trait ParserTestFixture[T]
     extends FreeSpec

@@ -1,6 +1,6 @@
 package com.kastrull.tajm.parse
 
-import com.kastrull.tajm.Note
+import com.kastrull.tajm.model.Note
 
 class NoteParserTest extends ParserTestFixture[Note] {
 

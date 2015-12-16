@@ -1,7 +1,7 @@
 package com.kastrull.tajm.calculate
 
-import com.kastrull.tajm.Activity
-import com.kastrull.tajm.Work
+import com.kastrull.tajm.model.Activity
+import com.kastrull.tajm.model.Work
 
 object EffortCalculator {
   type EffortMap = Map[Activity, Int]

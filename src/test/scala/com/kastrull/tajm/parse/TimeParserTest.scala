@@ -1,7 +1,7 @@
 package com.kastrull.tajm.parse
 
 import org.scalatest._
-import com.kastrull.tajm.Time
+import com.kastrull.tajm.model.Time
 
 class TimeParserTest extends ParserTestFixture[Time] {
 

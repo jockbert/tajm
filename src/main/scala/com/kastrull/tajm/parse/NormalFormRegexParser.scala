@@ -1,7 +1,7 @@
 package com.kastrull.tajm.parse
 
 import scala.util.parsing.combinator.RegexParsers
-import com.kastrull.tajm.Activity
+import com.kastrull.tajm.model.Activity
 
 protected case object NormalFormRegexParser extends RegexParsers {
 

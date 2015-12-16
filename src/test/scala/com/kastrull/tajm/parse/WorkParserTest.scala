@@ -1,8 +1,8 @@
 package com.kastrull.tajm.parse
 
-import com.kastrull.tajm.Work
-import com.kastrull.tajm.Activity
-import com.kastrull.tajm.TimeRange
+import com.kastrull.tajm.model.Work
+import com.kastrull.tajm.model.Activity
+import com.kastrull.tajm.model.TimeRange
 import scala.language.postfixOps
 
 class WorkParserTest

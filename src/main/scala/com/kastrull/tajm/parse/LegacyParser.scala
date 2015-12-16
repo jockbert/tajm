@@ -3,6 +3,15 @@ package com.kastrull.tajm.parse
 import com.kastrull.tajm._
 import scala.util.parsing.combinator._
 import org.joda.time.LocalDate
+import com.kastrull.tajm.model.Work
+import com.kastrull.tajm.model.Unexpect
+import com.kastrull.tajm.model.TimeRange
+import com.kastrull.tajm.model.Time
+import com.kastrull.tajm.model.Note
+import com.kastrull.tajm.model.Expect
+import com.kastrull.tajm.model.Day
+import com.kastrull.tajm.model.Activity
+import com.kastrull.tajm.model.AccumulatedDiff
 
 @Deprecated
 object LegacyParser extends JavaTokenParsers {

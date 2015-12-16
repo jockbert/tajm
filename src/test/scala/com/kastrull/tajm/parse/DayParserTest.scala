@@ -1,14 +1,14 @@
 package com.kastrull.tajm.parse
 
-import com.kastrull.tajm.Day
+import com.kastrull.tajm.model.Day
 import org.joda.time.LocalDate
-import com.kastrull.tajm.Activity
-import com.kastrull.tajm.AccumulatedDiff
-import com.kastrull.tajm.Expect
-import com.kastrull.tajm.Work
-import com.kastrull.tajm.TimeRange
-import com.kastrull.tajm.Unexpect
-import com.kastrull.tajm.Note
+import com.kastrull.tajm.model.Activity
+import com.kastrull.tajm.model.AccumulatedDiff
+import com.kastrull.tajm.model.Expect
+import com.kastrull.tajm.model.Work
+import com.kastrull.tajm.model.TimeRange
+import com.kastrull.tajm.model.Unexpect
+import com.kastrull.tajm.model.Note
 import scala.language.postfixOps
 
 class DayParserTest extends ParserTestFixture[Day] {

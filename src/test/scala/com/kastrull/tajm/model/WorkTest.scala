@@ -1,4 +1,4 @@
-package com.kastrull.tajm
+package com.kastrull.tajm.model
 
 import org.scalatest.FreeSpec
 import org.scalatest.Matchers

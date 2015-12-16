@@ -1,6 +1,7 @@
-package com.kastrull.tajm
+package com.kastrull.tajm.model
 
 import org.joda.time.LocalDate
+import scala.language.implicitConversions
 
 sealed trait LineCommand {
   def comment: Option[String]

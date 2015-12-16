@@ -1,4 +1,4 @@
-package com.kastrull.tajm
+package com.kastrull.tajm.model
 
 import org.scalacheck.Prop.forAll
 import org.scalacheck.Prop.propBoolean

@@ -1,6 +1,6 @@
 package com.kastrull.tajm.parse
 
-import com.kastrull.tajm.Activity
+import com.kastrull.tajm.model.Activity
 import Parser._
 
 object Parser {

@@ -1,7 +1,7 @@
 package com.kastrull.tajm.parse
 
-import com.kastrull.tajm.Unexpect
-import com.kastrull.tajm.Activity
+import com.kastrull.tajm.model.Unexpect
+import com.kastrull.tajm.model.Activity
 import scala.language.postfixOps
 
 class UnexpectParserTest extends ParserTestFixture[Unexpect] {

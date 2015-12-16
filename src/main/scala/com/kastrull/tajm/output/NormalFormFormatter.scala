@@ -1,6 +1,6 @@
 package com.kastrull.tajm.output
 
-import com.kastrull.tajm.Activity
+import com.kastrull.tajm.model.Activity
 
 case object NormalFormFormatter
     extends OutputFormatter {

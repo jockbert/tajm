@@ -2,7 +2,7 @@ package com.kastrull.tajm.calculate
 
 import org.scalatest.FreeSpec
 import org.scalatest.Matchers
-import com.kastrull.tajm.Activity
+import com.kastrull.tajm.model.Activity
 import org.joda.time.LocalDate
 
 class TimeAmountTest
