@@ -12,33 +12,6 @@ import com.kastrull.tajm.parse.Parser.ParseResult
 
 import NormalFormParser.activity
 
-class ActivityParserTest
-    extends ParserTestFixture[Activity] {
-
-  def parser = LegacyParser.activity
-
-  "root element" in {
-    "" becomes Activity()
-    "    " becomes Activity()
-    "/" becomes Activity()
-    " / " becomes Activity()
-  }
-
-  "one level element" in {
-    "/a" becomes Activity("a")
-    "/v/" becomes Activity("v")
-  }
-
-  "multiple level element" in {
-    "/a/b/c" becomes Activity("a", "b", "c")
-    " /v/W/ " becomes Activity("v", "W")
-  }
-
-  "failures" in {
-    "a/b" fails ()
-  }
-}
-
 class ActivityParserProps extends Properties("ActivityParser") {
 
   property("formatter-parser-roundtrip") =
@@ -62,5 +35,3 @@ class ActivityParserProps extends Properties("ActivityParser") {
     }
   }
 }
-
-// FIXME Update behavior and change from test to property
