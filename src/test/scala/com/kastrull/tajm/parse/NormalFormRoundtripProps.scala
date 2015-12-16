@@ -12,9 +12,9 @@ import com.kastrull.tajm.parse.Parser.ParseResult
 
 import NormalFormParser.activity
 
-class ActivityParserProps extends Properties("ActivityParser") {
+class NormalFormRoundtripProps extends Properties("NormalFormRoundtrip") {
 
-  property("formatter-parser-roundtrip") =
+  property("activity") =
     roundtrip(activity, format, genActivity)
 
   def roundtrip[X](
