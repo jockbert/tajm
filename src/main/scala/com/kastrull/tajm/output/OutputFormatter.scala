@@ -4,6 +4,6 @@ import com.kastrull.tajm.model.Activity
 
 trait OutputFormatter {
 
-  def format(x: Activity): String
+  def formatActivity(x: Activity): String
 
 }

@@ -9,7 +9,7 @@ object Parser {
 
 trait Parser {
 
-  def activity(s: String): ParseResult[Activity]
+  def parseActivity(s: String): ParseResult[Activity]
 }
 
 case object NormalFormParser extends Parser {
@@ -24,6 +24,6 @@ case object NormalFormParser extends Parser {
     }
   }
 
-  def activity(s: String): ParseResult[Activity] =
+  def parseActivity(s: String): ParseResult[Activity] =
     translate(parser.parseAll(parser.activity, s))
 }

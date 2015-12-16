@@ -7,28 +7,28 @@ import org.scalacheck.Properties
 
 import com.kastrull.tajm.model.Activity
 import com.kastrull.tajm.model.Generators.genActivity
-import com.kastrull.tajm.output.NormalFormFormatter.format
+import com.kastrull.tajm.output.NormalFormFormatter.formatActivity
 import com.kastrull.tajm.parse.Parser.ParseResult
 
-import NormalFormParser.activity
+import NormalFormParser.parseActivity
 
 class NormalFormRoundtripProps extends Properties("NormalFormRoundtrip") {
 
   property("activity") =
-    roundtrip(activity, format, genActivity)
+    roundtrip(genActivity, formatActivity, parseActivity)
 
   def roundtrip[X](
-    parser: String => ParseResult[X],
+    generator: Gen[X],
     formatter: X => String,
-    generator: Gen[X]) =
+    parser: String => ParseResult[X]) =
 
     forAll(generator) { originalX: X =>
       val textRepresentation = formatter(originalX)
-      val parsedX = stripResult(parser(textRepresentation))
+      val parsedX = getX(parser(textRepresentation))
       parsedX ?= originalX
     }
 
-  def stripResult[X](result: ParseResult[X]): X = {
+  def getX[X](result: ParseResult[X]): X = {
     result match {
       case Left(a)        => a
       case Right(message) => throw new Exception("Parse error " + message)
