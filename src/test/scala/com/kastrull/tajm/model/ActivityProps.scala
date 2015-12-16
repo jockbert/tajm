@@ -23,8 +23,8 @@ class ActivityProps extends Properties("Activity") {
     Activity(a) == Activity(b) ^ a != b
   }
 
-  property("name") = forAll { (a: Path, b: Path) =>
-    Activity(a).name == b ^ a != b
+  property("path") = forAll { (a: Path, b: Path) =>
+    Activity(a).path == b ^ a != b
   }
 
 }

@@ -6,5 +6,5 @@ case object NormalFormFormatter
     extends OutputFormatter {
 
   def format(x: Activity): String =
-    x.name.mkString("/", "/", "")
+    x.path.mkString("/", "/", "")
 }

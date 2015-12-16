@@ -64,12 +64,12 @@ object Activity {
   def apply(p1: String, p2: String, p3: String): Activity = Activity(p1 :: p2 :: p3 :: Nil)
 }
 
-case class Activity(name: Seq[String]) {
+case class Activity(path: Seq[String]) {
 
   def isParentOf(other: Activity): Boolean = {
-    val depth = name.length
-    def otherIsLonger = other.name.length > depth
-    def equalPrefix = other.name.take(depth) == name
+    val depth = path.length
+    def otherIsLonger = other.path.length > depth
+    def equalPrefix = other.path.take(depth) == path
 
     otherIsLonger && equalPrefix
   }
@@ -78,7 +78,7 @@ case class Activity(name: Seq[String]) {
     other.isParentOf(this)
 
   override def toString(): String =
-    "Activity(" + name.map("'" + _ + "'").mkString(", ") + ")"
+    "Activity(" + path.map("'" + _ + "'").mkString(", ") + ")"
 
 }
 
