@@ -1,6 +1,16 @@
 package com.kastrull.tajm.parse
 
+import org.scalacheck.Gen
+import org.scalacheck.Prop.AnyOperators
+import org.scalacheck.Prop.forAll
+import org.scalacheck.Properties
+
 import com.kastrull.tajm.model.Activity
+import com.kastrull.tajm.model.Generators.genActivity
+import com.kastrull.tajm.output.NormalFormFormatter.format
+import com.kastrull.tajm.parse.Parser.ParseResult
+
+import NormalFormParser.activity
 
 class ActivityParserTest
     extends ParserTestFixture[Activity] {
@@ -29,27 +39,24 @@ class ActivityParserTest
   }
 }
 
-import com.kastrull.tajm.model.Generators.genActivity
-
-import org.scalacheck.Prop.AnyOperators
-import org.scalacheck.Prop.forAll
-import org.scalacheck.Properties
-import com.kastrull.tajm.output.NormalFormFormatter
-
 class ActivityParserProps extends Properties("ActivityParser") {
 
-  val formatter = NormalFormFormatter
-  val parser = NormalFormParser.activity _
+  property("formatter-parser-roundtrip") =
+    roundtrip(activity, format, genActivity)
 
-  property("formatter-parser-roundtrip") = forAll(genActivity) { a: Activity =>
-    val x = formatParseRoundtrip(a)
-    x ?= a
-  }
+  def roundtrip[X](
+    parser: String => ParseResult[X],
+    formatter: X => String,
+    generator: Gen[X]) =
 
-  def formatParseRoundtrip(a: Activity) = {
-    val text = formatter.format(a)
+    forAll(generator) { originalX: X =>
+      val textRepresentation = formatter(originalX)
+      val parsedX = stripResult(parser(textRepresentation))
+      parsedX ?= originalX
+    }
 
-    parser(text) match {
+  def stripResult[X](result: ParseResult[X]): X = {
+    result match {
       case Left(a)        => a
       case Right(message) => throw new Exception("Parse error " + message)
     }
