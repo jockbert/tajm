@@ -1,17 +1,21 @@
 package com.kastrull.tajm.parse
 
-import com.kastrull.tajm._
-import scala.util.parsing.combinator._
+import scala.util.parsing.combinator.JavaTokenParsers
+
 import org.joda.time.LocalDate
-import com.kastrull.tajm.model.Work
-import com.kastrull.tajm.model.Unexpect
-import com.kastrull.tajm.model.TimeRange
-import com.kastrull.tajm.model.Time
-import com.kastrull.tajm.model.Note
-import com.kastrull.tajm.model.Expect
-import com.kastrull.tajm.model.Day
-import com.kastrull.tajm.model.Activity
+
 import com.kastrull.tajm.model.AccumulatedDiff
+import com.kastrull.tajm.model.Activity
+import com.kastrull.tajm.model.Clock
+import com.kastrull.tajm.model.Day
+import com.kastrull.tajm.model.Expect
+import com.kastrull.tajm.model.Hours
+import com.kastrull.tajm.model.Minutes
+import com.kastrull.tajm.model.Note
+import com.kastrull.tajm.model.Time
+import com.kastrull.tajm.model.TimeRange
+import com.kastrull.tajm.model.Unexpect
+import com.kastrull.tajm.model.Work
 
 @Deprecated
 object LegacyParser extends JavaTokenParsers {
@@ -24,13 +28,13 @@ object LegacyParser extends JavaTokenParsers {
     def int: Parser[Int] = wholeNumber ^^ { case i => i.toInt }
 
     def hourOnlyTime: Parser[Time] =
-      intOrEmpty ^^ { case h => Time(h * 60) }
+      intOrEmpty ^^ { case h => Hours(h) }
 
     def hourMinuteTime: Parser[Time] =
-      intOrEmpty ~ ":" ~ intOrEmpty ^^ { case h ~ _ ~ m => Time(h * 60 + m) }
+      intOrEmpty ~ ":" ~ intOrEmpty ^^ { case h ~ _ ~ m => Clock(h, m) }
 
     def minutes: Parser[Time] =
-      intOrEmpty <~ ("""(?i)m(in(ute)?)?s?""".r) ^^ { case m => Time(m) }
+      intOrEmpty <~ ("""(?i)m(in(ute)?)?s?""".r) ^^ { case m => Minutes(m) }
 
     hourMinuteTime | minutes | hourOnlyTime ^^ { case t => t }
   }

@@ -4,15 +4,15 @@ import org.scalatest.FreeSpec
 import org.scalatest.Matchers
 import scala.util.parsing.combinator._
 import com.kastrull.tajm.parse.LegacyParser._
-import com.kastrull.tajm.model.Time
+import com.kastrull.tajm.model._
 
 trait ParserTestFixture[T]
     extends FreeSpec
     with Matchers {
 
   implicit class ImplicitTime(hour: Int) {
-    def h = Time(hour * 60)
-    def h(minutes: Int) = Time(hour * 60 + minutes)
+    def h = Hours(hour * 60)
+    def h(minutes: Int) = Clock(hour, minutes)
   }
 
   implicit class ResultAsserter(source: String) {

@@ -9,13 +9,13 @@ sealed trait LineCommand {
 
 case class Work(
   activity: Activity,
-  range: TimeRange = TimeRange(Time(0), Time(0)),
+  range: TimeRange = TimeRange(Minutes(0), Minutes(0)),
   comment: Option[String] = None)
     extends LineCommand
 
 case class AccumulatedDiff(
   activity: Activity,
-  diff: Time = Time(0),
+  diff: Time = Minutes(0),
   comment: Option[String] = None)
     extends LineCommand
 
@@ -43,17 +43,6 @@ case class Unexpect(
 case class Note(
   comment: Option[String] = None)
     extends LineCommand
-
-object TimeImplicits {
-  import scala.language.implicitConversions
-
-  implicit def hoursToTime(hours: Int) =
-    Time(hours * 60)
-  implicit def hourAndMinuteTupleToTime(hm: (Int, Int)) =
-    Time(hm._1 * 60 + hm._2)
-}
-
-case class Time(minutes: Int)
 
 case class TimeRange(from: Time, to: Time)
 
