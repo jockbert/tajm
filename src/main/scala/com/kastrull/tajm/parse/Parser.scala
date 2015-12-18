@@ -2,6 +2,7 @@ package com.kastrull.tajm.parse
 
 import com.kastrull.tajm.model.Activity
 import Parser._
+import com.kastrull.tajm.model.Hours
 
 object Parser {
   type ParseResult[VAL] = Either[VAL, String]
@@ -26,4 +27,7 @@ case object NormalFormParser extends Parser {
 
   def parseActivity(s: String): ParseResult[Activity] =
     translate(parser.parseAll(parser.activity, s))
+
+  def parseHours(s: String): ParseResult[Hours] =
+    translate(parser.parseAll(parser.hours, s))
 }

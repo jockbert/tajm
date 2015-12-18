@@ -6,16 +6,19 @@ import org.scalacheck.Prop.forAll
 import org.scalacheck.Properties
 
 import com.kastrull.tajm.model.Activity
-import com.kastrull.tajm.model.Generators.genActivity
-import com.kastrull.tajm.output.NormalFormFormatter.formatActivity
+import com.kastrull.tajm.model.Generators._
+import com.kastrull.tajm.output.NormalFormFormatter._
 import com.kastrull.tajm.parse.Parser.ParseResult
 
-import NormalFormParser.parseActivity
+import NormalFormParser._
 
 class NormalFormRoundtripProps extends Properties("NormalFormRoundtrip") {
 
   property("activity") =
     roundtrip(genActivity, formatActivity, parseActivity)
+
+  property("hours") =
+    roundtrip(genHours, formatHours, parseHours)
 
   def roundtrip[X](
     generator: Gen[X],

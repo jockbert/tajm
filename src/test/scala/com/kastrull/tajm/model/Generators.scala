@@ -11,4 +11,19 @@ object Generators {
   val genActivity = for {
     path <- genPath
   } yield Activity(path)
+
+  val genHours = for {
+    h <- Gen.choose(0, 24)
+  } yield Hours(h)
+
+  val genMinutes = for {
+    m <- Gen.choose(0, 1440)
+  } yield Minutes(m)
+
+  val genClock = for {
+    h <- Gen.choose(0, 24)
+    m <- Gen.choose(0, 59)
+  } yield Clock
+
+  val genTime = Gen.oneOf(genHours, genMinutes, genClock)
 }
