@@ -4,19 +4,19 @@ import Parser._
 import com.kastrull.tajm.model._
 
 object Parser {
-  type ParseResult[VAL] = Either[VAL, String]
+  type ParserResult[VAL] = Either[VAL, String]
 }
 
 trait Parser {
 
-  def parseActivity(s: String): ParseResult[Activity]
+  def parseActivity(s: String): ParserResult[Activity]
 }
 
 case object NormalFormParser extends Parser {
 
   private val parser = NormalFormRegexParser
 
-  def translate[X](result: parser.ParseResult[X]): ParseResult[X] = {
+  def translate[X](result: parser.ParseResult[X]): ParserResult[X] = {
     result match {
       case parser.Success(x, _)       => Left(x)
       case parser.Error(message, _)   => Right(message)
@@ -24,18 +24,21 @@ case object NormalFormParser extends Parser {
     }
   }
 
-  def parseActivity(s: String): ParseResult[Activity] =
-    translate(parser.parseAll(parser.activity, s))
+  def doParse[X](parserX: parser.Parser[X], s: String): ParserResult[X] =
+    translate(parser.parseAll(parserX, s))
 
-  def parseHours(s: String): ParseResult[Hours] =
-    translate(parser.parseAll(parser.hours, s))
+  def parseActivity(s: String): ParserResult[Activity] =
+    doParse(parser.activity, s)
 
-  def parseMinutes(s: String): ParseResult[Minutes] =
-    translate(parser.parseAll(parser.minutes, s))
+  def parseHours(s: String): ParserResult[Hours] =
+    doParse(parser.hours, s)
 
-  def parseClock(s: String): ParseResult[Clock] =
-    translate(parser.parseAll(parser.clock, s))
+  def parseMinutes(s: String): ParserResult[Minutes] =
+    doParse(parser.minutes, s)
 
-  def parseTime(s: String): ParseResult[Time] =
-    translate(parser.parseAll(parser.time, s))
+  def parseClock(s: String): ParserResult[Clock] =
+    doParse(parser.clock, s)
+
+  def parseTime(s: String): ParserResult[Time] =
+    doParse(parser.time, s)
 }
