@@ -14,16 +14,16 @@ protected case object NormalFormRegexParser extends RegexParsers {
         }
       }
 
+  def int: Parser[Int] =
+    """\d+""".r ^^ { s => s.toInt }
+
   def hours: Parser[Hours] =
-    """\d+""".r ^^ { s => Hours(s.toInt) }
+    int ^^ { h => Hours(h) }
 
   def minutes: Parser[Minutes] =
-    """\d+""".r <~ "m".r ^^ { s => Minutes(s.toInt) }
+    int <~ "m" ^^ { m => Minutes(m) }
 
   def clock: Parser[Clock] =
-    """\d+:\d+""".r ^^ { s =>
-      val x = s.split(":")
-      Clock(x(0).toInt, x(1).toInt)
-    }
+    (int <~ ':') ~ int ^^ { s => Clock(s._1, s._2) }
 
 }
