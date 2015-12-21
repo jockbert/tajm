@@ -25,5 +25,5 @@ object Generators {
     m <- Gen.choose(0, 59)
   } yield Clock(h, m)
 
-  val genTime = Gen.oneOf(genHours, genMinutes, genClock)
+  val genTime: Gen[Time] = Gen.oneOf(genHours, genMinutes, genClock)
 }

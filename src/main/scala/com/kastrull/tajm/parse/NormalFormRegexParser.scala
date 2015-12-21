@@ -23,4 +23,6 @@ protected case object NormalFormRegexParser extends RegexParsers {
   def clock: Parser[Clock] =
     (int <~ ':') ~ int ^^ { s => Clock(s._1, s._2) }
 
+  def time: Parser[Time] = (clock | minutes | hours)
+
 }

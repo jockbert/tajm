@@ -35,4 +35,7 @@ case object NormalFormParser extends Parser {
 
   def parseClock(s: String): ParseResult[Clock] =
     translate(parser.parseAll(parser.clock, s))
+
+  def parseTime(s: String): ParseResult[Time] =
+    translate(parser.parseAll(parser.time, s))
 }
