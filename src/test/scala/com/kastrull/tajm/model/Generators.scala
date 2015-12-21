@@ -26,4 +26,9 @@ object Generators {
   } yield Clock(h, m)
 
   val genTime: Gen[Time] = Gen.oneOf(genHours, genMinutes, genClock)
+
+  val genExpected = for {
+    time <- genTime
+    todayOnly <- Gen.oneOf(true, false)
+  } yield ExpectedTime(time, todayOnly)
 }

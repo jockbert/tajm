@@ -13,6 +13,7 @@ trait Parser {
   def parseMinutes(s: String): ParserResult[Minutes]
   def parseClock(s: String): ParserResult[Clock]
   def parseTime(s: String): ParserResult[Time]
+  def parseExpected(s: String): ParserResult[ExpectedTime]
 }
 
 case object NormalFormParser extends Parser {
@@ -44,4 +45,7 @@ case object NormalFormParser extends Parser {
 
   def parseTime(s: String): ParserResult[Time] =
     doParse(parser.time, s)
+
+  def parseExpected(s: String): ParserResult[ExpectedTime] =
+    doParse(parser.expected, s)
 }
