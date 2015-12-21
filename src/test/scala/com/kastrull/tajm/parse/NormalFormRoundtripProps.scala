@@ -20,6 +20,9 @@ class NormalFormRoundtripProps extends Properties("NormalFormRoundtrip") {
   property("hours") =
     roundtrip(genHours, formatHours, parseHours)
 
+  property("minutes") =
+    roundtrip(genMinutes, formatMinutes, parseMinutes)
+
   def roundtrip[X](
     generator: Gen[X],
     formatter: X => String,

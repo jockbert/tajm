@@ -1,8 +1,7 @@
 package com.kastrull.tajm.parse
 
 import scala.util.parsing.combinator.RegexParsers
-import com.kastrull.tajm.model.Activity
-import com.kastrull.tajm.model.Hours
+import com.kastrull.tajm.model._
 
 protected case object NormalFormRegexParser extends RegexParsers {
 
@@ -17,5 +16,8 @@ protected case object NormalFormRegexParser extends RegexParsers {
 
   def hours: Parser[Hours] =
     """\d+""".r ^^ { s => Hours(s.toInt) }
+
+  def minutes: Parser[Minutes] =
+    """\d+""".r <~ "m".r ^^ { s => Minutes(s.toInt) }
 
 }

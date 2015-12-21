@@ -1,7 +1,6 @@
 package com.kastrull.tajm.output
 
-import com.kastrull.tajm.model.Activity
-import com.kastrull.tajm.model.Hours
+import com.kastrull.tajm.model._
 
 case object NormalFormFormatter
     extends OutputFormatter {
@@ -11,4 +10,7 @@ case object NormalFormFormatter
 
   def formatHours(x: Hours): String =
     x.hours.toString()
+
+  def formatMinutes(x: Minutes): String =
+    x.minutes + "m"
 }
