@@ -13,4 +13,7 @@ case object NormalFormFormatter
 
   def formatMinutes(x: Minutes): String =
     x.minutes + "m"
+
+  def formatClock(x: Clock): String =
+    x.h + ":" + x.m
 }

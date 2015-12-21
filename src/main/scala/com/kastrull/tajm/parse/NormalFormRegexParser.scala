@@ -20,4 +20,10 @@ protected case object NormalFormRegexParser extends RegexParsers {
   def minutes: Parser[Minutes] =
     """\d+""".r <~ "m".r ^^ { s => Minutes(s.toInt) }
 
+  def clock: Parser[Clock] =
+    """\d+:\d+""".r ^^ { s =>
+      val x = s.split(":")
+      Clock(x(0).toInt, x(1).toInt)
+    }
+
 }

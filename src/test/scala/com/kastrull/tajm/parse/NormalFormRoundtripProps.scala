@@ -5,7 +5,7 @@ import org.scalacheck.Prop.AnyOperators
 import org.scalacheck.Prop.forAll
 import org.scalacheck.Properties
 
-import com.kastrull.tajm.model.Activity
+import com.kastrull.tajm.model._
 import com.kastrull.tajm.model.Generators._
 import com.kastrull.tajm.output.NormalFormFormatter._
 import com.kastrull.tajm.parse.Parser.ParseResult
@@ -15,18 +15,21 @@ import NormalFormParser._
 class NormalFormRoundtripProps extends Properties("NormalFormRoundtrip") {
 
   property("activity") =
-    roundtrip(genActivity, formatActivity, parseActivity)
+    roundtrip(genActivity)(formatActivity, parseActivity)
 
   property("hours") =
-    roundtrip(genHours, formatHours, parseHours)
+    roundtrip(genHours)(formatHours, parseHours)
 
   property("minutes") =
-    roundtrip(genMinutes, formatMinutes, parseMinutes)
+    roundtrip(genMinutes)(formatMinutes, parseMinutes)
+
+  property("clock") =
+    roundtrip(genClock)(formatClock, parseClock)
 
   def roundtrip[X](
-    generator: Gen[X],
-    formatter: X => String,
-    parser: String => ParseResult[X]) =
+    generator: Gen[X])(
+      formatter: X => String,
+      parser: String => ParseResult[X]) =
 
     forAll(generator) { originalX: X =>
       val textRepresentation = formatter(originalX)

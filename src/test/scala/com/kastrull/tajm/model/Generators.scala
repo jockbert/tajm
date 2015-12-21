@@ -23,7 +23,7 @@ object Generators {
   val genClock = for {
     h <- Gen.choose(0, 24)
     m <- Gen.choose(0, 59)
-  } yield Clock
+  } yield Clock(h, m)
 
   val genTime = Gen.oneOf(genHours, genMinutes, genClock)
 }
