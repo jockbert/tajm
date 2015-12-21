@@ -10,9 +10,10 @@ import com.kastrull.tajm.model.Generators._
 import com.kastrull.tajm.output.NormalFormFormatter._
 import com.kastrull.tajm.parse.Parser.ParserResult
 
-import NormalFormParser._
-
 class NormalFormRoundtripProps extends Properties("NormalFormRoundtrip") {
+
+  val parser: Parser = NormalFormParser
+  import parser._
 
   property("activity") =
     roundtrip(genActivity)(formatActivity, parseActivity)

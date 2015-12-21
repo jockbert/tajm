@@ -8,8 +8,11 @@ object Parser {
 }
 
 trait Parser {
-
   def parseActivity(s: String): ParserResult[Activity]
+  def parseHours(s: String): ParserResult[Hours]
+  def parseMinutes(s: String): ParserResult[Minutes]
+  def parseClock(s: String): ParserResult[Clock]
+  def parseTime(s: String): ParserResult[Time]
 }
 
 case object NormalFormParser extends Parser {
