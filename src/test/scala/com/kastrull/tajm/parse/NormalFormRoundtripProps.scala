@@ -30,7 +30,7 @@ class NormalFormRoundtripProps extends Properties("NormalFormRoundtrip") {
   property("time") =
     roundtrip(genTime)(formatTime, parseTime)
 
-  def roundtrip[X](
+  private def roundtrip[X](
     generator: Gen[X])(
       formatter: X => String,
       parser: String => ParserResult[X]) =
@@ -41,7 +41,7 @@ class NormalFormRoundtripProps extends Properties("NormalFormRoundtrip") {
       parsedX ?= originalX
     }
 
-  def getX[X](result: ParserResult[X]): X = {
+  private def getX[X](result: ParserResult[X]): X = {
     result match {
       case Left(a)        => a
       case Right(message) => throw new Exception("Parse error " + message)
