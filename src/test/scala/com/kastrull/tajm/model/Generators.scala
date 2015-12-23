@@ -33,7 +33,7 @@ object Generators {
       to <- genTime
     } yield TimeRange(from, to)
 
-  val genExpected = for {
+  val genExpectedTime = for {
     time <- genTime
     todayOnly <- Gen.oneOf(true, false)
   } yield ExpectedTime(time, todayOnly)

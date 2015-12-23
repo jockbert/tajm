@@ -33,8 +33,8 @@ class NormalFormRoundtripProps extends Properties("NormalFormRoundtrip") {
   property("timerange") =
     roundtrip(genTimeRange)(formatTimeRange, parseTimeRange)
 
-  property("expect") =
-    roundtrip(genExpected)(formatExpected, parseExpected)
+  property("expectTime") =
+    roundtrip(genExpectedTime)(formatExpectedTime, parseExpectedTime)
 
   private def roundtrip[X](
     generator: Gen[X])(

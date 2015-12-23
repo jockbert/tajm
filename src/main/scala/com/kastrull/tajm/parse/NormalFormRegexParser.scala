@@ -28,7 +28,7 @@ protected case object NormalFormRegexParser extends RegexParsers {
 
   def time: Parser[Time] = (clock | minutes | hours)
 
-  def expected: Parser[ExpectedTime] =
+  def expectedTime: Parser[ExpectedTime] =
     "expect" ~> time ~ flag("once") ^^ { s => ExpectedTime(s._1, s._2) }
 
   def timeRange: Parser[TimeRange] =

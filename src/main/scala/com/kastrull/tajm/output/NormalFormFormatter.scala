@@ -24,7 +24,7 @@ case object NormalFormFormatter
       case c: Clock   => formatClock(c)
     }
 
-  def formatExpected(x: ExpectedTime): String =
+  def formatExpectedTime(x: ExpectedTime): String =
     x match {
       case ExpectedTime(time, false) => "expect " + formatTime(time)
       case ExpectedTime(time, true)  => "expect " + formatTime(time) + " once"
