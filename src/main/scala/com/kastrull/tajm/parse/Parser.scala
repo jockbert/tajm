@@ -14,6 +14,7 @@ trait Parser {
   def parseClock(s: String): ParserResult[Clock]
   def parseTime(s: String): ParserResult[Time]
   def parseExpected(s: String): ParserResult[ExpectedTime]
+  def parseTimeRange(s: String): ParserResult[TimeRange]
 }
 
 case object NormalFormParser extends Parser {
@@ -48,4 +49,7 @@ case object NormalFormParser extends Parser {
 
   def parseExpected(s: String): ParserResult[ExpectedTime] =
     doParse(parser.expected, s)
+
+  def parseTimeRange(s: String): ParserResult[TimeRange] =
+    doParse(parser.timeRange, s)
 }

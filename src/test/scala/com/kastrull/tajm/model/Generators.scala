@@ -27,6 +27,12 @@ object Generators {
 
   val genTime: Gen[Time] = Gen.oneOf(genHours, genMinutes, genClock)
 
+  val genTimeRange: Gen[TimeRange] =
+    for {
+      from <- genTime
+      to <- genTime
+    } yield TimeRange(from, to)
+
   val genExpected = for {
     time <- genTime
     todayOnly <- Gen.oneOf(true, false)

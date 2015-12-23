@@ -30,6 +30,9 @@ class NormalFormRoundtripProps extends Properties("NormalFormRoundtrip") {
   property("time") =
     roundtrip(genTime)(formatTime, parseTime)
 
+  property("timerange") =
+    roundtrip(genTimeRange)(formatTimeRange, parseTimeRange)
+
   property("expect") =
     roundtrip(genExpected)(formatExpected, parseExpected)
 

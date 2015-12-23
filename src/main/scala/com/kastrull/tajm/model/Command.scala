@@ -44,8 +44,6 @@ case class Note(
   comment: Option[String] = None)
     extends LineCommand
 
-case class TimeRange(from: Time, to: Time)
-
 case class Day(
   date: LocalDate,
   lines: Seq[LineCommand] = Nil,

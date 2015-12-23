@@ -29,4 +29,7 @@ case object NormalFormFormatter
       case ExpectedTime(time, false) => "expect " + formatTime(time)
       case ExpectedTime(time, true)  => "expect " + formatTime(time) + " once"
     }
+
+  def formatTimeRange(x: TimeRange): String =
+    formatTime(x.from) + "-" + formatTime(x.to)
 }

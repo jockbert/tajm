@@ -14,6 +14,8 @@ case class Clock(h: Int, m: Int) extends Time {
   def minutes = h * 60 + m
 }
 
+case class TimeRange(from: Time, to: Time)
+
 object TimeImplicits {
   import scala.language.implicitConversions
 
