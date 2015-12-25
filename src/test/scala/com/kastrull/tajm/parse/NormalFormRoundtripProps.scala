@@ -39,6 +39,9 @@ class NormalFormRoundtripProps extends Properties("NormalFormRoundtrip") {
   property("comment") =
     roundtrip(genComment)(formatComment, parseComment)
 
+  // TODO Add: diff, date, line, linesInDay, day, days
+  // TODO remove old tests and old prod-code
+
   private def roundtrip[X](
     generator: Gen[X])(
       formatter: X => String,
