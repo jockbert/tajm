@@ -37,4 +37,8 @@ object Generators {
     time <- genTime
     todayOnly <- Gen.oneOf(true, false)
   } yield ExpectedTime(time, todayOnly)
+
+  val genComment = Gen.containerOf[Seq, String](Gen.alphaStr).map {
+    words => Comment(words.mkString(" "))
+  }
 }

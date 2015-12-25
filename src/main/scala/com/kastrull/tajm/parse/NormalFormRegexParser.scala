@@ -34,4 +34,7 @@ protected case object NormalFormRegexParser extends RegexParsers {
   def timeRange: Parser[TimeRange] =
     (time <~ "-") ~ time ^^ { s => TimeRange(s._1, s._2) }
 
+  def comment: Parser[Comment] =
+    "# .*".r ^^ { s => Comment(s.tail.tail) }
+
 }

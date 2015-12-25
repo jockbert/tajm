@@ -32,4 +32,8 @@ case object NormalFormFormatter
 
   def formatTimeRange(x: TimeRange): String =
     formatTime(x.from) + "-" + formatTime(x.to)
+
+  def formatComment(x: Comment): String =
+    "# " + x.text
+
 }

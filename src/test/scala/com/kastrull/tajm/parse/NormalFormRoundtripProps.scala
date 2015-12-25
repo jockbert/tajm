@@ -36,6 +36,9 @@ class NormalFormRoundtripProps extends Properties("NormalFormRoundtrip") {
   property("expectTime") =
     roundtrip(genExpectedTime)(formatExpectedTime, parseExpectedTime)
 
+  property("comment") =
+    roundtrip(genComment)(formatComment, parseComment)
+
   private def roundtrip[X](
     generator: Gen[X])(
       formatter: X => String,
