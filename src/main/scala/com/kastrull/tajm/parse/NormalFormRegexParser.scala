@@ -37,4 +37,7 @@ protected case object NormalFormRegexParser extends RegexParsers {
   def comment: Parser[Comment] =
     "# .*".r ^^ { s => Comment(s.tail.tail) }
 
+  def accumulatedDiff: Parser[AccumulatedDiff] =
+    "diff" ~> time ^^ { AccumulatedDiff(_) }
+
 }

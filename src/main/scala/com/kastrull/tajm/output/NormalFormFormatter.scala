@@ -36,4 +36,7 @@ case object NormalFormFormatter
   def formatComment(x: Comment): String =
     "# " + x.text
 
+  def formatDiff(x: AccumulatedDiff): String =
+    "diff " + formatTime(x.diff)
+
 }

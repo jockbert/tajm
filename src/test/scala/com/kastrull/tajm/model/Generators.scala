@@ -41,4 +41,6 @@ object Generators {
   val genComment = Gen.containerOf[Seq, String](Gen.alphaStr).map {
     words => Comment(words.mkString(" "))
   }
+
+  val genDiff = genTime.map(AccumulatedDiff(_))
 }
