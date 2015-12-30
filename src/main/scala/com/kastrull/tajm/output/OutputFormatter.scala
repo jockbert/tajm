@@ -6,4 +6,6 @@ trait OutputFormatter {
 
   def formatActivity(x: Activity): String
 
+  // FIXME Add the rest of all formatting from NormalFormFormatter.
+
 }
