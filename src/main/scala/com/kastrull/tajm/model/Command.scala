@@ -13,7 +13,7 @@ case class Work(
   comment: Option[String] = None)
     extends LineCommand
 
-case class AccumulatedDiff(
+case class AccumulatedDiffOld(
   activity: Activity,
   diff: Time = Minutes(0),
   comment: Option[String] = None)

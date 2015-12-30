@@ -4,7 +4,7 @@ import scala.util.parsing.combinator.JavaTokenParsers
 
 import org.joda.time.LocalDate
 
-import com.kastrull.tajm.model.AccumulatedDiff
+import com.kastrull.tajm.model.AccumulatedDiffOld
 import com.kastrull.tajm.model.Activity
 import com.kastrull.tajm.model.Clock
 import com.kastrull.tajm.model.Day
@@ -70,8 +70,8 @@ object LegacyParser extends JavaTokenParsers {
   def unexpect: Parser[Unexpect] =
     "unexpect" ~> activity ~ comment ^^ { case a ~ c => Unexpect(a, c) }
 
-  def accDiff: Parser[AccumulatedDiff] =
-    "accdiff" ~> activity ~ time ~ comment ^^ { case a ~ t ~ c => AccumulatedDiff(a, t, c) }
+  def accDiff: Parser[AccumulatedDiffOld] =
+    "accdiff" ~> activity ~ time ~ comment ^^ { case a ~ t ~ c => AccumulatedDiffOld(a, t, c) }
 
   def note: Parser[Note] = someComment ^^ { case s => Note(s) }
 

@@ -11,7 +11,7 @@ import com.kastrull.tajm.model.LineCommand
 import com.kastrull.tajm.model.Work
 import com.kastrull.tajm.model.TimeImplicits._
 import com.kastrull.tajm.model.TimeRange
-import com.kastrull.tajm.model.AccumulatedDiff
+import com.kastrull.tajm.model.AccumulatedDiffOld
 import com.kastrull.tajm.model.Expect
 import com.kastrull.tajm.model.Unexpect
 import com.kastrull.tajm.model.Day
@@ -114,7 +114,7 @@ class ExpectedWorkConverterTest
 
     "AccumulatedDiff" in
       translateLineCommand {
-        AccumulatedDiff(activityA, 1)
+        AccumulatedDiffOld(activityA, 1)
       }.expects(None)
 
     "Expect day" in
