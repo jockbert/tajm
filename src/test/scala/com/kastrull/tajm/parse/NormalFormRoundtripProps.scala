@@ -42,6 +42,9 @@ class NormalFormRoundtripProps extends Properties("NormalFormRoundtrip") {
   property("diff") =
     roundtrip(genDiff)(formatDiff, parseDiff)
 
+  property("unexpectTime") =
+    roundtrip(genUnexpectTime)(formatUnexpectTime, parseUnexpectTime)
+
   // TODO Add: date, line, linesInDay, day, days
   // TODO remove old tests and old prod-code
 

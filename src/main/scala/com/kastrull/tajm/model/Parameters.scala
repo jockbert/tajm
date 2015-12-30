@@ -5,3 +5,5 @@ case class ExpectedTime(
   todayOnly: Boolean)
 
 case class AccumulatedDiff(diff: Time)
+
+case object UnexpectTime

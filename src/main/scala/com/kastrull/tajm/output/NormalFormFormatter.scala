@@ -39,4 +39,7 @@ case object NormalFormFormatter
   def formatDiff(x: AccumulatedDiff): String =
     "diff " + formatTime(x.diff)
 
+  def formatUnexpectTime(x: UnexpectTime.type): String =
+    "unexpect"
+
 }

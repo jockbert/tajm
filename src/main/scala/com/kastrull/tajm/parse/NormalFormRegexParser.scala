@@ -40,4 +40,7 @@ protected case object NormalFormRegexParser extends RegexParsers {
   def accumulatedDiff: Parser[AccumulatedDiff] =
     "diff" ~> time ^^ { AccumulatedDiff(_) }
 
+  def unexpectTime: Parser[UnexpectTime.type] =
+    "unexpect" ^^^ { UnexpectTime }
+
 }

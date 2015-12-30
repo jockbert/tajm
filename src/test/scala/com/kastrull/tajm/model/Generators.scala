@@ -38,6 +38,8 @@ object Generators {
     todayOnly <- Gen.oneOf(true, false)
   } yield ExpectedTime(time, todayOnly)
 
+  val genUnexpectTime = Gen.const(UnexpectTime)
+
   val genComment = Gen.containerOf[Seq, String](Gen.alphaStr).map {
     words => Comment(words.mkString(" "))
   }
