@@ -45,7 +45,7 @@ class NormalFormRoundtripProps extends Properties("NormalFormRoundtrip") {
   property("unexpectTime") =
     roundtrip(genUnexpectTime)(formatUnexpectTime, parseUnexpectTime)
 
-  // TODO Add: date, line, linesInDay, day, days
+  // TODO Add: date, line, linesInDay, day, days, lunch/break
   // TODO remove old tests and old prod-code
 
   private def roundtrip[X](
