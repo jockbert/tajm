@@ -42,4 +42,7 @@ case object NormalFormFormatter
   def formatUnexpectTime(x: UnexpectTime.type): String =
     "unexpect"
 
+  def formatBrake(x: Brake): String =
+    if (x.isLunch) "lunch" else "brake"
+
 }

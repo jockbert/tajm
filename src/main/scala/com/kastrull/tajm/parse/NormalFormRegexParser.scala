@@ -43,4 +43,7 @@ protected case object NormalFormRegexParser extends RegexParsers {
   def unexpectTime: Parser[UnexpectTime.type] =
     "unexpect" ^^^ { UnexpectTime }
 
+  def brake: Parser[Brake] =
+    "(brake|lunch)".r ^^ { s => Brake(s == "lunch") }
+
 }

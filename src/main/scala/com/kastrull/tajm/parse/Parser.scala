@@ -18,6 +18,7 @@ trait Parser {
   def parseComment(s: String): ParserResult[Comment]
   def parseDiff(s: String): ParserResult[AccumulatedDiff]
   def parseUnexpectTime(s: String): ParserResult[UnexpectTime.type]
+  def parseBrake(s: String): ParserResult[Brake]
 }
 
 case object NormalFormParser extends Parser {
@@ -64,4 +65,7 @@ case object NormalFormParser extends Parser {
 
   def parseUnexpectTime(s: String): ParserResult[UnexpectTime.type] =
     doParse(parser.unexpectTime, s)
+
+  def parseBrake(s: String): ParserResult[Brake] =
+    doParse(parser.brake, s)
 }

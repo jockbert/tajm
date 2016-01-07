@@ -45,4 +45,7 @@ object Generators {
   }
 
   val genDiff = genTime.map(AccumulatedDiff(_))
+
+  val genBrake = Gen.oneOf(true, false).map(Brake(_))
+
 }

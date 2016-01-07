@@ -23,7 +23,7 @@ Source syntax example
 
 	/projX/taskA/item3	7:30-18:30  expect 6  # Long day
 	lunch 		12-13
-	break		15-15:30
+	brake		15-15:30
 
 
 2014-05-09
