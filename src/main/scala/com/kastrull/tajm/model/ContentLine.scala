@@ -1,6 +1,6 @@
 package com.kastrull.tajm.model
 
-case class ContentLine(content: Content, comment: Comment)
+case class ContentLine(content: Content, comment: Option[Comment])
 
 sealed trait Content
 

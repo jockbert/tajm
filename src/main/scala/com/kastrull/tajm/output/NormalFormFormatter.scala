@@ -64,4 +64,14 @@ case object NormalFormFormatter
   def formatBrakeLine(x: BrakeLine): String =
     formatBrake(x.brake) + " " + formatTimeRange(x.duration)
 
+  def formatContent(x: Content): String =
+    x match {
+      case line: ActivityLine => formatActivityLine(line)
+      case line: BrakeLine    => formatBrakeLine(line)
+      case EmptyLine          => ""
+    }
+
+  def formatContentLine(x: ContentLine): String =
+    formatContent(x.content) + " " + x.comment.map(formatComment).getOrElse("")
+
 }

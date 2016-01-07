@@ -69,4 +69,13 @@ object Generators {
       duration <- genTimeRange
     } yield BrakeLine(brake, duration)
 
+  val genContent: Gen[Content] =
+    Gen.oneOf(genBrakeLine, genActivityLine, Gen.const(EmptyLine))
+
+  val genContentLine: Gen[ContentLine] =
+    for {
+      content <- genContent
+      comment <- Gen.option(genComment)
+    } yield ContentLine(content, comment)
+
 }

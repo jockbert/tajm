@@ -64,4 +64,14 @@ protected case object NormalFormRegexParser extends RegexParsers {
     brake ~ timeRange ^^ {
       case b ~ duration => BrakeLine(b, duration)
     }
+
+  def emptyLine: Parser[EmptyLine.type] =
+    "" ^^^ { EmptyLine }
+
+  def content: Parser[Content] =
+    activityLine | brakeLine | emptyLine
+
+  def contentLine: Parser[ContentLine] =
+    content ~ (comment ?) ^^ { case cont ~ comm => ContentLine(cont, comm) }
+
 }
