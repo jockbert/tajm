@@ -68,6 +68,7 @@ case object NormalFormFormatter
     x match {
       case line: ActivityLine => formatActivityLine(line)
       case line: BrakeLine    => formatBrakeLine(line)
+      case line: DateLine     => formatDate(line.date)
       case EmptyLine          => ""
     }
 

@@ -68,8 +68,11 @@ protected case object NormalFormRegexParser extends RegexParsers {
   def emptyLine: Parser[EmptyLine.type] =
     "" ^^^ { EmptyLine }
 
+  def dateLine: Parser[DateLine] =
+    date ^^ { DateLine(_) }
+
   def content: Parser[Content] =
-    activityLine | brakeLine | emptyLine
+    activityLine | brakeLine | dateLine | emptyLine
 
   def contentLine: Parser[ContentLine] =
     content ~ (comment ?) ^^ { case cont ~ comm => ContentLine(cont, comm) }

@@ -69,8 +69,15 @@ object Generators {
       duration <- genTimeRange
     } yield BrakeLine(brake, duration)
 
+  val genDateLine: Gen[DateLine] =
+    genDate.map(DateLine(_))
+
   val genContent: Gen[Content] =
-    Gen.oneOf(genBrakeLine, genActivityLine, Gen.const(EmptyLine))
+    Gen.oneOf(
+      genBrakeLine,
+      genActivityLine,
+      genDateLine,
+      Gen.const(EmptyLine))
 
   val genContentLine: Gen[ContentLine] =
     for {
