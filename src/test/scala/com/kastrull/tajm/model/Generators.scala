@@ -79,10 +79,10 @@ object Generators {
       genDateLine,
       Gen.const(EmptyLine))
 
-  val genContentLine: Gen[ContentLine] =
+  val genContentLine: Gen[Line] =
     for {
       content <- genContent
       comment <- Gen.option(genComment)
-    } yield ContentLine(content, comment)
+    } yield Line(content, comment)
 
 }

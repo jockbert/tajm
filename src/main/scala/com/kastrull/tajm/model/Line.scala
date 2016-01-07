@@ -2,7 +2,7 @@ package com.kastrull.tajm.model
 
 import org.joda.time.LocalDate
 
-case class ContentLine(content: Content, comment: Option[Comment])
+case class Line(content: Content, comment: Option[Comment])
 
 sealed trait Content
 

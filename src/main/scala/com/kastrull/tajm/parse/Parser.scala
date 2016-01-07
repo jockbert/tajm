@@ -23,7 +23,7 @@ trait Parser {
   def parseDate(s: String): ParserResult[LocalDate]
   def parseActivityLine(s: String): ParserResult[ActivityLine]
   def parseBrakeLine(s: String): ParserResult[BrakeLine]
-  def parseContentLine(s: String): ParserResult[ContentLine]
+  def parseLine(s: String): ParserResult[Line]
 }
 
 case object NormalFormParser extends Parser {
@@ -83,6 +83,6 @@ case object NormalFormParser extends Parser {
   def parseBrakeLine(s: String): ParserResult[BrakeLine] =
     doParse(parser.brakeLine, s)
 
-  def parseContentLine(s: String): ParserResult[ContentLine] =
-    doParse(parser.contentLine, s)
+  def parseLine(s: String): ParserResult[Line] =
+    doParse(parser.line, s)
 }

@@ -72,7 +72,7 @@ case object NormalFormFormatter
       case EmptyLine          => ""
     }
 
-  def formatContentLine(x: ContentLine): String =
+  def formatLine(x: Line): String =
     formatContent(x.content) + " " + x.comment.map(formatComment).getOrElse("")
 
 }
