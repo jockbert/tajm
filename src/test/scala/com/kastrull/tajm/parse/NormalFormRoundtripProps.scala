@@ -51,6 +51,9 @@ class NormalFormRoundtripProps extends Properties("NormalFormRoundtrip") {
   property("date") =
     roundtrip(genDate)(formatDate, parseDate)
 
+  property("activityLine") =
+    roundtrip(genActivityLine)(formatActivityLine, parseActivityLine)
+
   // TODO Add: line, linesInDay, day, days
   // TODO remove old tests and old prod-code
 

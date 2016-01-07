@@ -21,6 +21,7 @@ trait Parser {
   def parseUnexpectTime(s: String): ParserResult[UnexpectTime.type]
   def parseBrake(s: String): ParserResult[Brake]
   def parseDate(s: String): ParserResult[LocalDate]
+  def parseActivityLine(s: String): ParserResult[ActivityLine]
 }
 
 case object NormalFormParser extends Parser {
@@ -73,4 +74,7 @@ case object NormalFormParser extends Parser {
 
   def parseDate(s: String): ParserResult[LocalDate] =
     doParse(parser.date, s)
+
+  def parseActivityLine(s: String): ParserResult[ActivityLine] =
+    doParse(parser.activityLine, s)
 }

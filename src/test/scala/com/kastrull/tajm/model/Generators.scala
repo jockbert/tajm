@@ -53,4 +53,14 @@ object Generators {
   val genDate: Gen[LocalDate] =
     Gen.choose(0, Long.MaxValue).map { new LocalDate(_) }
 
+  val genParameter: Gen[Parameter] =
+    Gen.oneOf(genUnexpectTime, genExpectedTime, genDiff)
+
+  val genActivityLine: Gen[ActivityLine] =
+    for {
+      activity <- genActivity
+      duration <- Gen.option(genTimeRange)
+      parameters <- Gen.listOf(genParameter)
+    } yield ActivityLine(activity, duration, parameters)
+
 }

@@ -46,6 +46,19 @@ case object NormalFormFormatter
   def formatBrake(x: Brake): String =
     if (x.isLunch) "lunch" else "brake"
 
+  def formatParameter(x: Parameter): String =
+    x match {
+      case diff: AccumulatedDiff => formatDiff(diff)
+      case et: ExpectedTime      => formatExpectedTime(et)
+      case ut: UnexpectTime.type => formatUnexpectTime(ut)
+    }
+
   def formatDate(x: LocalDate): String =
     x.getYear() + "-" + x.getMonthOfYear() + "-" + x.getDayOfMonth()
+
+  def formatActivityLine(x: ActivityLine): String =
+    formatActivity(x.activity) + " " +
+      x.duration.map(formatTimeRange).getOrElse("") + " " +
+      x.parameters.map(formatParameter).mkString(" ")
+
 }
