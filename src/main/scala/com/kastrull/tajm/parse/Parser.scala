@@ -2,6 +2,7 @@ package com.kastrull.tajm.parse
 
 import Parser._
 import com.kastrull.tajm.model._
+import org.joda.time.LocalDate
 
 object Parser {
   type ParserResult[VAL] = Either[VAL, String]
@@ -19,6 +20,7 @@ trait Parser {
   def parseDiff(s: String): ParserResult[AccumulatedDiff]
   def parseUnexpectTime(s: String): ParserResult[UnexpectTime.type]
   def parseBrake(s: String): ParserResult[Brake]
+  def parseDate(s: String): ParserResult[LocalDate]
 }
 
 case object NormalFormParser extends Parser {
@@ -68,4 +70,7 @@ case object NormalFormParser extends Parser {
 
   def parseBrake(s: String): ParserResult[Brake] =
     doParse(parser.brake, s)
+
+  def parseDate(s: String): ParserResult[LocalDate] =
+    doParse(parser.date, s)
 }

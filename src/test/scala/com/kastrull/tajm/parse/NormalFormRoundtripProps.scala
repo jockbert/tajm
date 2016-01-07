@@ -48,7 +48,10 @@ class NormalFormRoundtripProps extends Properties("NormalFormRoundtrip") {
   property("brake") =
     roundtrip(genBrake)(formatBrake, parseBrake)
 
-  // TODO Add: date, line, linesInDay, day, days
+  property("date") =
+    roundtrip(genDate)(formatDate, parseDate)
+
+  // TODO Add: line, linesInDay, day, days
   // TODO remove old tests and old prod-code
 
   private def roundtrip[X](

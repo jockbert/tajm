@@ -1,6 +1,7 @@
 package com.kastrull.tajm.output
 
 import com.kastrull.tajm.model._
+import org.joda.time.LocalDate
 
 case object NormalFormFormatter
     extends OutputFormatter {
@@ -45,4 +46,6 @@ case object NormalFormFormatter
   def formatBrake(x: Brake): String =
     if (x.isLunch) "lunch" else "brake"
 
+  def formatDate(x: LocalDate): String =
+    x.getYear() + "-" + x.getMonthOfYear() + "-" + x.getDayOfMonth()
 }

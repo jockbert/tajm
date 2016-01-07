@@ -1,5 +1,7 @@
 package com.kastrull.tajm.model
 
+import org.joda.time.LocalDate
+
 object Generators {
 
   import org.scalacheck._
@@ -47,5 +49,8 @@ object Generators {
   val genDiff = genTime.map(AccumulatedDiff(_))
 
   val genBrake = Gen.oneOf(true, false).map(Brake(_))
+
+  val genDate: Gen[LocalDate] =
+    Gen.choose(0, Long.MaxValue).map { new LocalDate(_) }
 
 }

@@ -3,6 +3,7 @@ package com.kastrull.tajm.parse
 import scala.util.parsing.combinator.RegexParsers
 import scala.language.postfixOps
 import com.kastrull.tajm.model._
+import org.joda.time.LocalDate
 
 protected case object NormalFormRegexParser extends RegexParsers {
 
@@ -45,5 +46,10 @@ protected case object NormalFormRegexParser extends RegexParsers {
 
   def brake: Parser[Brake] =
     "(brake|lunch)".r ^^ { s => Brake(s == "lunch") }
+
+  def date: Parser[LocalDate] =
+    (((int <~ "-") ~ int <~ "-") ~ int) ^^ {
+      case ~(~(y, m), d) => new LocalDate(y, m, d)
+    }
 
 }
