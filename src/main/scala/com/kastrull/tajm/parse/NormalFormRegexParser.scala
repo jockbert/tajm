@@ -75,6 +75,7 @@ protected case object NormalFormRegexParser extends RegexParsers {
     activityLine | brakeLine | dateLine | emptyLine
 
   def line: Parser[Line] =
-    content ~ (comment ?) ^^ { case cont ~ comm => Line(cont, comm) }
-
+    content ~ (comment ?) ^^ {
+      case cont ~ comm => Line(cont, comm)
+    }
 }

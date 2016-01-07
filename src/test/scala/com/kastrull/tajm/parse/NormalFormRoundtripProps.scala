@@ -58,9 +58,8 @@ class NormalFormRoundtripProps extends Properties("NormalFormRoundtrip") {
     roundtrip(genBrakeLine)(formatBrakeLine, parseBrakeLine)
 
   property("line") =
-    roundtrip(genContentLine)(formatLine, parseLine)
+    roundtrip(genLine)(formatLine, parseLine)
 
-  // TODO Add: linesInDay, days
   // TODO remove old tests and old prod-code
 
   private def roundtrip[X](
