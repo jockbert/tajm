@@ -63,4 +63,10 @@ object Generators {
       parameters <- Gen.listOf(genParameter)
     } yield ActivityLine(activity, duration, parameters)
 
+  val genBrakeLine: Gen[BrakeLine] =
+    for {
+      brake <- genBrake
+      duration <- genTimeRange
+    } yield BrakeLine(brake, duration)
+
 }

@@ -61,4 +61,7 @@ case object NormalFormFormatter
       x.duration.map(formatTimeRange).getOrElse("") + " " +
       x.parameters.map(formatParameter).mkString(" ")
 
+  def formatBrakeLine(x: BrakeLine): String =
+    formatBrake(x.brake) + " " + formatTimeRange(x.duration)
+
 }

@@ -57,6 +57,11 @@ protected case object NormalFormRegexParser extends RegexParsers {
 
   def activityLine: Parser[ActivityLine] =
     activity ~ (timeRange ?) ~ (parameter *) ^^ {
-      case ~(~(act, dur), params) => ActivityLine(act, dur, params)
+      case act ~ dur ~ params => ActivityLine(act, dur, params)
+    }
+
+  def brakeLine: Parser[BrakeLine] =
+    brake ~ timeRange ^^ {
+      case b ~ duration => BrakeLine(b, duration)
     }
 }

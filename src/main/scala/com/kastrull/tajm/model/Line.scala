@@ -5,7 +5,10 @@ case class Line(content: LineContent, comment: Comment)
 sealed trait LineContent
 
 case object EmptyLine extends LineContent
-case class BreakLine() extends LineContent
+
+case class BrakeLine(
+  brake: Brake,
+  duration: TimeRange) extends LineContent
 
 case class ActivityLine(
   activity: Activity,

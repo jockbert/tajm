@@ -54,6 +54,9 @@ class NormalFormRoundtripProps extends Properties("NormalFormRoundtrip") {
   property("activityLine") =
     roundtrip(genActivityLine)(formatActivityLine, parseActivityLine)
 
+  property("brakeLine") =
+    roundtrip(genBrakeLine)(formatBrakeLine, parseBrakeLine)
+
   // TODO Add: line, linesInDay, day, days
   // TODO remove old tests and old prod-code
 
