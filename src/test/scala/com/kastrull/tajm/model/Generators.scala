@@ -53,7 +53,7 @@ object Generators {
   val genDate: Gen[LocalDate] =
     Gen.choose(0, Long.MaxValue).map { new LocalDate(_) }
 
-  val genParameter: Gen[Parameter] =
+  val genParameter: Gen[ActivityParameter] =
     Gen.oneOf(genUnexpectTime, genExpectedTime, genDiff)
 
   val genActivityLine: Gen[ActivityLine] =

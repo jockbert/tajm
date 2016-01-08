@@ -46,7 +46,7 @@ case object NormalFormFormatter
   def formatBrake(x: Brake): String =
     if (x.isLunch) "lunch" else "brake"
 
-  def formatParameter(x: Parameter): String =
+  def formatParameter(x: ActivityParameter): String =
     x match {
       case diff: AccumulatedDiff => formatDiff(diff)
       case et: ExpectedTime      => formatExpectedTime(et)
@@ -59,7 +59,7 @@ case object NormalFormFormatter
   def formatActivityLine(x: ActivityLine): String =
     formatActivity(x.activity) + " " +
       x.duration.map(formatTimeRange).getOrElse("") + " " +
-      x.parameters.map(formatParameter).mkString(" ")
+      x.params.map(formatParameter).mkString(" ")
 
   def formatBrakeLine(x: BrakeLine): String =
     formatBrake(x.brake) + " " + formatTimeRange(x.duration)

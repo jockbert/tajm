@@ -52,7 +52,7 @@ protected case object NormalFormRegexParser extends RegexParsers {
       case ~(~(y, m), d) => new LocalDate(y, m, d)
     }
 
-  def parameter: Parser[Parameter] =
+  def parameter: Parser[ActivityParameter] =
     accumulatedDiff | unexpectTime | expectedTime
 
   def activityLine: Parser[ActivityLine] =
