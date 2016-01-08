@@ -3,6 +3,7 @@ package com.kastrull.tajm.calculate
 import org.joda.time.LocalDate
 import TimeAmmount.DailyAmmounts
 
+// TODO use or remove TimeAmmount
 object TimeAmmount {
 
   type DailyAmmount = (LocalDate, Option[Int])
