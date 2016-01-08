@@ -75,4 +75,6 @@ case object NormalFormFormatter
   def formatLine(x: Line): String =
     formatContent(x.content) + " " + x.comment.map(formatComment).getOrElse("")
 
+  def formatLines(x: Seq[Line]): String =
+    x.map(formatLine).mkString("\n")
 }
