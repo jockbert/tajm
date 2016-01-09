@@ -59,8 +59,6 @@ class NormalFormRoundtripProps extends Properties("NormalFormRoundtrip") {
   property("line") =
     roundtrip(genLine)(formatLine, parseLine)
 
-  // TODO remove old tests and old prod-code
-
   private def roundtrip[X](
     generator: Gen[X])(
       formatter: X => String,
