@@ -1,6 +1,5 @@
 package com.kastrull.tajm.parse
 
-import Parser._
 import com.kastrull.tajm.model._
 import org.joda.time.LocalDate
 

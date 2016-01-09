@@ -1,12 +1,7 @@
 package com.kastrull.tajm.parse
 
-import Parser._
 import com.kastrull.tajm.model._
 import org.joda.time.LocalDate
-
-object Parser {
-  type ParserResult[VAL] = Either[VAL, String]
-}
 
 trait Parser {
   def parseActivity(s: String): ParserResult[Activity]

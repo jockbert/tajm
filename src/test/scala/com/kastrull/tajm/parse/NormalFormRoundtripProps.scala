@@ -8,7 +8,6 @@ import org.scalacheck.Properties
 import com.kastrull.tajm.model._
 import com.kastrull.tajm.model.Generators._
 import com.kastrull.tajm.output.NormalFormFormatter._
-import com.kastrull.tajm.parse.Parser.ParserResult
 
 class NormalFormRoundtripProps extends Properties("NormalFormRoundtrip") {
 
