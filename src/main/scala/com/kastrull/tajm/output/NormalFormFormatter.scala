@@ -25,11 +25,10 @@ case object NormalFormFormatter
       case c: Clock   => formatClock(c)
     }
 
-  def formatExpectedTime(x: ExpectedTime): String =
-    x match {
-      case ExpectedTime(time, false) => "expect " + formatTime(time)
-      case ExpectedTime(time, true)  => "expect " + formatTime(time) + " once"
-    }
+  def formatExpectedTime(x: ExpectedTime): String = {
+    val once = if (x.todayOnly) " once" else ""
+    "expect " + formatTime(x.expected) + once
+  }
 
   def formatTimeRange(x: TimeRange): String =
     formatTime(x.from) + "-" + formatTime(x.to)
@@ -73,7 +72,8 @@ case object NormalFormFormatter
     }
 
   def formatLine(x: Line): String =
-    formatContent(x.content) + " " + x.comment.map(formatComment).getOrElse("")
+    formatContent(x.content) + " " +
+      x.comment.map(formatComment).getOrElse("")
 
   def formatLines(x: Seq[Line]): String =
     x.map(formatLine).mkString("\n")

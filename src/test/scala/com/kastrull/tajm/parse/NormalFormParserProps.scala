@@ -9,7 +9,7 @@ import com.kastrull.tajm.model._
 import com.kastrull.tajm.model.Generators._
 import com.kastrull.tajm.output.NormalFormFormatter._
 
-class NormalFormRoundtripProps extends Properties("NormalFormRoundtrip") {
+class NormalFormParserProps extends Properties("NormalFormParser") {
 
   val parser: Parser = NormalFormParser
   import parser._
