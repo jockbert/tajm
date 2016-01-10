@@ -84,4 +84,6 @@ object Generators {
       content <- genContent
       comment <- Gen.option(genComment)
     } yield Line(content, comment)
+
+  val genLines: Gen[Seq[Line]] = Gen.listOf(genLine)
 }
